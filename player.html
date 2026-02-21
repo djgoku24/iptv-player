@@ -49,6 +49,14 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 .ctrl-btn{background:#1a1a1a;border:1px solid #2a2a2a;color:#ccc;padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;white-space:nowrap}
 .ctrl-btn:hover{background:#e94560;border-color:#e94560;color:#fff}
 @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
+.focused {
+  outline: 2px solid #e94560 !important;
+  background: #1e2a4a !important;
+}
+.channel-item.active.focused {
+  background: #c73652 !important;
+}
+
 </style>
 </head>
 <body>
@@ -140,6 +148,22 @@ function parseM3U(text) {
       cur = null;
     }
   }
+
+  const ordineCategorie = [
+    "RAI", "Rai", "Mediaset", "La7", "News", "Sport",
+    "Intrattenimento", "Cinema", "Bambini", "Generale"
+  ];
+
+  channels.sort((a, b) => {
+    const iA = ordineCategorie.findIndex(c => a.category.toLowerCase().includes(c.toLowerCase()));
+    const iB = ordineCategorie.findIndex(c => b.category.toLowerCase().includes(c.toLowerCase()));
+    const orderA = iA === -1 ? 999 : iA;
+    const orderB = iB === -1 ? 999 : iB;
+    if (orderA !== orderB) return orderA - orderB;
+    if (a.category !== b.category) return a.category.localeCompare(b.category);
+    return a.name.localeCompare(b.name);
+  });
+
   currentIndex = -1;
   currentCategory = "Tutti";
   renderCategoryTabs();
@@ -275,9 +299,81 @@ function prevChannel() {
 function nextChannel() {
   if (currentIndex < channels.length - 1) selectChannel(currentIndex + 1);
 }
+   // ============================================================
+    // NAVIGAZIONE TELECOMANDO
+    // ============================================================
+    let focusedIndex = -1;
+    let focusableItems = [];
+
+    document.addEventListener("keydown", function(e) {
+      switch(e.key) {
+        case "ArrowDown":
+          e.preventDefault();
+          moveFocus(1);
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          moveFocus(-1);
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          if (focusedIndex >= 0 && focusableItems[focusedIndex]) {
+            focusableItems[focusedIndex].click();
+          }
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          nextChannel();
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          prevChannel();
+          break;
+        case "Backspace":
+        case "XF86Back":
+          e.preventDefault();
+          document.getElementById("channel-list").focus();
+          break;
+        case "MediaPlayPause":
+        case "p":
+          e.preventDefault();
+          const v = document.getElementById("video");
+          v.paused ? v.play() : v.pause();
+          break;
+        case "MediaStop":
+          e.preventDefault();
+          document.getElementById("video").pause();
+          break;
+        case "MediaTrackNext":
+          e.preventDefault();
+          nextChannel();
+          break;
+        case "MediaTrackPrevious":
+          e.preventDefault();
+          prevChannel();
+          break;
+      }
+    });
+
+    function updateFocusable() {
+      focusableItems = Array.from(document.querySelectorAll(".channel-item, .ctrl-btn, .cat-btn"));
+    }
+
+    function moveFocus(direction) {
+      updateFocusable();
+      if (focusableItems.length === 0) return;
+      focusedIndex += direction;
+      if (focusedIndex < 0) focusedIndex = 0;
+      if (focusedIndex >= focusableItems.length) focusedIndex = focusableItems.length - 1;
+      focusableItems.forEach(el => el.classList.remove("focused"));
+      focusableItems[focusedIndex].classList.add("focused");
+      focusableItems[focusedIndex].scrollIntoView({ block: "nearest" });
+    }
 </script>
 </body>
 </html>
+
 
 
 
