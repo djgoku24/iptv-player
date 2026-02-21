@@ -136,27 +136,32 @@ window.addEventListener("load", loadM3U);
 
 function loadM3U() {
   setStatus("loading", "Caricamento lista...");
-  tryProxy(0);
-}
 
-function tryProxy(index) {
-  if (index >= PROXIES.length) {
-    setStatus("error", "Errore: nessun proxy disponibile");
-    document.getElementById("channel-list").innerHTML = '<p class="empty-msg">❌ Impossibile caricare la lista. Riprova più tardi.</p>';
-    return;
+  const proxies = [
+    "https://proxy.corsfix.com/?" + M3U_URL,
+    "https://api.allorigins.win/raw?url=" + encodeURIComponent(M3U_URL),
+    "https://corsproxy.io/?" + encodeURIComponent(M3U_URL)
+  ];
+
+  let index = 0;
+
+  function tryNext() {
+    if (index >= proxies.length) {
+      setStatus("error", "Errore caricamento lista");
+      document.getElementById("channel-list").innerHTML = '<p class="empty-msg">❌ Impossibile caricare la lista.</p>';
+      return;
+    }
+    fetch(proxies[index++])
+      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+      .then(text => {
+        if (!text.includes("#EXTM3U")) throw new Error("Risposta non valida");
+        parseM3U(text);
+        setStatus("live", channels.length + " canali pronti");
+      })
+      .catch(() => tryNext());
   }
-  const url = PROXIES[index] + encodeURIComponent(M3U_URL);
-  fetch(url)
-    .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-    .then(text => {
-      if (!text.includes("#EXTM3U")) throw new Error("Non è un M3U valido");
-      parseM3U(text);
-      setStatus("live", channels.length + " canali pronti");
-    })
-    .catch(() => {
-      tryProxy(index + 1);
-    });
-}
+
+  tryNext();
 
 function parseM3U(text) {
   channels = [];
@@ -337,4 +342,5 @@ function nextChannel() {
 }
 </script>
 </body>
+
 </html>
