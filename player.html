@@ -150,9 +150,17 @@ function parseM3U(text) {
   }
 
   const ordineCategorie = [
-    "RAI", "Rai", "Mediaset", "La7", "News", "Sport",
-    "Intrattenimento", "Cinema", "Bambini", "Generale"
-  ];
+  "General",
+  "Entertainment",
+  "News",
+  "Sports",
+  "Movies",
+  "Kids",
+  "Music",
+  "Documentary",
+  "Religious",
+  "Undefined"
+];
 
   channels.sort((a, b) => {
     const iA = ordineCategorie.findIndex(c => a.category.toLowerCase().includes(c.toLowerCase()));
@@ -373,6 +381,7 @@ function nextChannel() {
 </script>
 </body>
 </html>
+
 
 
 
