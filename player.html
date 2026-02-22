@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV Player</title>
+    <title>IPTV Player Pro</title>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; height: 100vh; overflow: hidden; }
-        
-        #sidebar { width: 300px; background: #0d0d0d; display: flex; flex-direction: column; border-right: 1px solid #1a1a1a; flex-shrink: 0; }
+
+        #sidebar { width: 300px; background: #0d0d0d; display: flex; flex-direction: column; border-right: 1px solid #1a1a1a; flex-shrink: 0; transition: width 0.3s; }
         #sidebar-header { padding: 14px 16px; background: #0d0d0d; border-bottom: 1px solid #1a1a1a; flex-shrink: 0; }
         #sidebar-header h2 { font-size: 1.1rem; color: #e94560; letter-spacing: 1px; margin-bottom: 8px; }
         
         #search-input { width: 100%; padding: 8px 12px; background: #111; border: 1px solid #222; border-radius: 8px; color: #fff; font-size: .82rem; outline: none; }
         #search-input:focus { border-color: #e94560; }
-        
+
         #cat-tabs { display: flex; overflow-x: auto; padding: 8px 10px; gap: 6px; border-bottom: 1px solid #1a1a1a; flex-shrink: 0; }
         #cat-tabs::-webkit-scrollbar { height: 3px; }
         #cat-tabs::-webkit-scrollbar-thumb { background: #e94560; border-radius: 2px; }
-        
-        .cat-btn { background: #111; border: 1px solid #222; color: #888; padding: 4px 12px; border-radius: 20px; font-size: .72rem; cursor: pointer; white-space: nowrap; transition: all .2s; }
+
+        .cat-btn { background: #111; border: 1px solid #222; color: #888; padding: 5px 14px; border-radius: 20px; font-size: .72rem; cursor: pointer; white-space: nowrap; transition: all .2s; outline: none; }
         .cat-btn:hover, .cat-btn.active { background: #e94560; border-color: #e94560; color: #fff; }
-        .cat-btn:focus { outline: 2px solid #e94560; background: #e94560; color: #fff; }
+        .cat-btn:focus { outline: 2px solid #e94560; background: #1a1a1a; color: #fff; }
 
         #channel-list { flex: 1; overflow-y: auto; padding: 8px; }
         #channel-list::-webkit-scrollbar { width: 4px; }
-        #channel-list::-webkit-scrollbar-thumb { background: #222; }
+        #channel-list::-webkit-scrollbar-thumb { background: #e94560; border-radius: 2px; }
 
-        .channel-item { display: flex; align-items: center; padding: 10px; margin-bottom: 4px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; outline: none; transition: background .2s; }
+        .channel-item { display: flex; align-items: center; padding: 10px; margin-bottom: 4px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; outline: none; transition: background .2s; }
         .channel-item:hover, .channel-item.focused { background: #1a1a1a; }
-        .channel-item.active { background: #1a1a1a; border-color: #e94560; }
-        
-        .channel-img { width: 40px; height: 40px; border-radius: 4px; object-fit: contain; margin-right: 12px; background: #000; border: 1px solid #222; }
-        .channel-name { font-size: 0.88rem; font-weight: 500; color: #eee; }
+        .channel-item.active { background: #1a1a2e; border-color: #e94560; }
+        .channel-item.focused { outline: 2px solid #e94560; }
 
-        #main-content { flex: 1; position: relative; background: #000; display: flex; flex-direction: column; }
+        .channel-img { width: 40px; height: 40px; border-radius: 4px; object-fit: contain; margin-right: 12px; background: #111; border: 1px solid #222; }
+        .channel-name { font-size: 0.88rem; font-weight: 500; color: #eee; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        #main-content { flex: 1; position: relative; background: #000; display: flex; flex-direction: column; overflow: hidden; }
         #player-container { flex: 1; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
-        iframe, video { width: 100%; height: 100%; border: none; }
-
-        #overlay-msg { position: absolute; color: #444; text-align: center; }
+        iframe, video { width: 100%; height: 100%; border: none; outline: none; }
         
-        #fullscreen-btn { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.6); color: #fff; border: 1px solid #333; padding: 8px; border-radius: 4px; cursor: pointer; z-index: 10; opacity: 0.6; transition: opacity 0.3s; }
-        #fullscreen-btn:hover { opacity: 1; background: #e94560; }
+        #overlay-msg { position: absolute; color: #444; text-align: center; z-index: 5; }
+        
+        #controls { background: #0d0d0d; border-top: 1px solid #1a1a1a; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-shrink: 0; }
+        #now-playing { flex: 1; min-width: 0; }
+        .np-label { font-size: 0.65rem; color: #888; text-transform: uppercase; margin-bottom: 2px; }
+        .np-name { font-size: 0.95rem; font-weight: 700; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        .ctrl-group { display: flex; gap: 8px; }
+        .ctrl-btn { background: #1a1a1a; border: 1px solid #333; color: #fff; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; outline: none; transition: all 0.2s; }
+        .ctrl-btn:hover, .ctrl-btn:focus { background: #e94560; border-color: #e94560; }
+
+        #status-badge { position: absolute; top: 14px; right: 14px; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 20px; font-size: .75rem; pointer-events: none; z-index: 10; }
+        .sdot { width: 8px; height: 8px; border-radius: 50%; background: #555; }
+        .sdot.live { background: #e94560; animation: pulse 1.2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .3 } }
+
+        @media (max-width: 768px) {
+            #sidebar { width: 100%; position: absolute; z-index: 20; height: 100%; left: -100%; }
+            #sidebar.open { left: 0; }
+        }
     </style>
 </head>
 <body>
     <div id="sidebar">
         <div id="sidebar-header">
             <h2>IPTV Player</h2>
-            <input type="text" id="search-input" placeholder="Cerca canali...">
+            <input type="text" id="search-input" placeholder="Cerca canali..." autocomplete="off">
         </div>
         <div id="cat-tabs">
             <button class="cat-btn active" onclick="filterCat('All')">Tutti</button>
@@ -61,12 +78,25 @@
         </div>
         <div id="channel-list"></div>
     </div>
-    
+
     <div id="main-content">
-        <div id="player-container">
-            <div id="overlay-msg">Seleziona un canale</div>
+        <div id="status-badge">
+            <div class="sdot" id="live-dot"></div>
+            <span id="status-text">In attesa...</span>
         </div>
-        <button id="fullscreen-btn" onclick="toggleFullscreen()">FS</button>
+        <div id="player-container">
+            <div id="overlay-msg">Seleziona un canale per iniziare</div>
+        </div>
+        <div id="controls">
+            <div id="now-playing">
+                <div class="np-label">In onda</div>
+                <div class="np-name" id="current-ch-name">-</div>
+            </div>
+            <div class="ctrl-group">
+                <button class="ctrl-btn" id="mute-btn" onclick="muteToggle()">🔇 Muto</button>
+                <button class="ctrl-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -84,10 +114,14 @@
         let currentCat = 'All';
         let focusedIndex = -1;
         let lastEnterTime = 0;
+        
         const listEl = document.getElementById('channel-list');
         const playerContainer = document.getElementById('player-container');
         const overlay = document.getElementById('overlay-msg');
         const searchInput = document.getElementById('search-input');
+        const statusText = document.getElementById('status-text');
+        const liveDot = document.getElementById('live-dot');
+        const currentChName = document.getElementById('current-ch-name');
 
         function renderChannels(query = '') {
             listEl.innerHTML = '';
@@ -113,49 +147,73 @@
         function filterCat(cat) {
             currentCat = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
-                const btnLabel = btn.innerText === 'Tutti' ? 'All' : btn.innerText;
-                btn.classList.toggle('active', btnLabel === cat);
+                const label = btn.innerText === 'Tutti' ? 'All' : btn.innerText;
+                btn.classList.toggle('active', label === cat);
             });
             renderChannels(searchInput.value);
         }
 
         function selectChannel(ch, element) {
             document.querySelectorAll('.channel-item').forEach(i => i.classList.remove('active'));
-            element.classList.add('active');
+            if (element) element.classList.add('active');
+            
             overlay.style.display = 'none';
-            
-            const url = ch.url;
+            currentChName.innerText = ch.name;
+            statusText.innerText = "Caricamento...";
+            liveDot.classList.remove('live');
+
             playerContainer.innerHTML = '';
-            
+            const url = ch.url;
             const isStream = url.includes('.m3u8') || url.includes('.mpd');
-            
+
             if (isStream) {
                 const video = document.createElement('video');
-                video.controls = true; video.autoplay = true;
+                video.id = "video-player";
+                video.autoplay = true;
+                video.playsInline = true;
                 playerContainer.appendChild(video);
-                
+
                 if (url.includes('.m3u8')) {
                     if (Hls.isSupported()) {
-                        const hls = new Hls(); hls.loadSource(url); hls.attachMedia(video);
+                        const hls = new Hls();
+                        hls.loadSource(url);
+                        hls.attachMedia(video);
+                        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                            video.play();
+                            statusText.innerText = "In Diretta";
+                            liveDot.classList.add('live');
+                        });
                     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                         video.src = url;
+                        statusText.innerText = "In Diretta";
+                        liveDot.classList.add('live');
                     }
                 } else {
-                    const player = dashjs.MediaPlayer().create(); player.initialize(video, url, true);
+                    const player = dashjs.MediaPlayer().create();
+                    player.initialize(video, url, true);
+                    statusText.innerText = "In Diretta";
+                    liveDot.classList.add('live');
                 }
             } else {
                 const iframe = document.createElement('iframe');
                 iframe.src = url;
                 iframe.allow = "autoplay; fullscreen";
                 playerContainer.appendChild(iframe);
+                statusText.innerText = "Web Player";
+                liveDot.classList.add('live');
             }
-            
-            setTimeout(() => toggleFullscreen(true), 800);
         }
 
-        function toggleFullscreen(force = false) {
+        function muteToggle() {
+            const v = document.getElementById('video-player');
+            if (!v) return;
+            v.muted = !v.muted;
+            document.getElementById('mute-btn').innerText = v.muted ? "🔊 Audio" : "🔇 Muto";
+        }
+
+        function toggleFullscreen() {
             const el = document.getElementById('main-content');
-            if (force || !document.fullscreenElement) {
+            if (!document.fullscreenElement) {
                 if (el.requestFullscreen) el.requestFullscreen();
                 else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
             } else {
@@ -167,26 +225,51 @@
 
         document.addEventListener('keydown', (e) => {
             const items = document.querySelectorAll('.channel-item');
-            const isCat = document.activeElement.classList.contains("cat-btn");
-            if (items.length === 0 && !isCat) return;
+            const cats = document.querySelectorAll('.cat-btn');
+            const active = document.activeElement;
+            const isCat = active.classList.contains("cat-btn");
+            const isInput = active.id === "search-input";
 
             switch(e.key) {
                 case "ArrowDown":
                     e.preventDefault();
-                    if (isCat) { focusedIndex = 0; }
-                    else if (focusedIndex < items.length - 1) { focusedIndex++; }
-                    applyFocus(items);
+                    if (isInput) {
+                        cats[0].focus();
+                    } else if (isCat) {
+                        focusedIndex = 0;
+                        applyFocus(items);
+                    } else if (focusedIndex < items.length - 1) {
+                        focusedIndex++;
+                        applyFocus(items);
+                    }
                     break;
                 case "ArrowUp":
                     e.preventDefault();
-                    if (focusedIndex > 0) { focusedIndex--; applyFocus(items); }
-                    else { document.querySelector(".cat-btn.active").focus(); }
+                    if (focusedIndex > 0) {
+                        focusedIndex--;
+                        applyFocus(items);
+                    } else if (!isInput) {
+                        if (isCat) searchInput.focus();
+                        else cats[0].focus();
+                    }
+                    break;
+                case "ArrowRight":
+                    if (isCat) {
+                        const next = Array.from(cats).indexOf(active) + 1;
+                        if (cats[next]) cats[next].focus();
+                    }
+                    break;
+                case "ArrowLeft":
+                    if (isCat) {
+                        const prev = Array.from(cats).indexOf(active) - 1;
+                        if (cats[prev]) cats[prev].focus();
+                    }
                     break;
                 case "Enter":
                     const now = Date.now();
-                    if (now - lastEnterTime < 400) toggleFullscreen(true);
+                    if (now - lastEnterTime < 400) toggleFullscreen();
                     lastEnterTime = now;
-                    document.activeElement.click();
+                    active.click();
                     break;
             }
         });
