@@ -17,7 +17,7 @@ body{background:#000;color:#fff;font-family:'Segoe UI',sans-serif;display:flex;h
 #cat-tabs{display:flex;overflow-x:auto;padding:8px 10px;gap:6px;border-bottom:1px solid #1a1a1a;flex-shrink:0}
 #cat-tabs::-webkit-scrollbar{height:3px}
 #cat-tabs::-webkit-scrollbar-thumb{background:#e94560;border-radius:2px}
-.cat-btn{background:#111;border:1px solid #222;color:#888;padding:4px 12px;border-radius:20px;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:all .2s;tabindex:0}
+.cat-btn{background:#111;border:1px solid #222;color:#888;padding:4px 12px;border-radius:20px;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:all .2s}
 .cat-btn:hover,.cat-btn.active{background:#e94560;border-color:#e94560;color:#fff}
 .cat-btn:focus{outline:2px solid #e94560;background:#e94560;color:#fff}
 #channel-list{flex:1;overflow-y:auto;padding:6px}
@@ -53,28 +53,13 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 .ctrl-btn:focus{outline:2px solid #e94560;background:#e94560;color:#fff}
 .focused{outline:2px solid #e94560 !important;background:#1e2a4a !important}
 .channel-item.active.focused{background:#c73652 !important}
-
-/* BARRA FULLSCREEN */
-#fs-bar{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  background:linear-gradient(transparent, rgba(0,0,0,.95));
-  padding:20px 30px 16px;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  z-index:9999;
-  opacity:0;
-  transition:opacity .4s;
-  pointer-events:none;
-}
+#fs-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.95));padding:20px 30px 16px;display:flex;align-items:center;gap:14px;z-index:9999;opacity:0;transition:opacity .4s;pointer-events:none}
 #fs-bar.show{opacity:1}
 #fs-bar-logo{width:42px;height:42px;border-radius:8px;object-fit:contain;background:#111}
 #fs-bar-info{flex:1}
 #fs-bar-name{font-size:1.2rem;font-weight:700;color:#fff}
 #fs-bar-cat{font-size:.8rem;color:#aaa;margin-top:2px}
 #fs-bar-dot{width:10px;height:10px;border-radius:50%;background:#e94560;animation:pulse 1.2s infinite;flex-shrink:0}
-
 @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
 </style>
 </head>
@@ -113,7 +98,6 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
   </div>
 </div>
 
-<!-- BARRA FULLSCREEN -->
 <div id="fs-bar">
   <img id="fs-bar-logo" src="" onerror="this.style.display='none'"/>
   <div id="fs-bar-info">
@@ -141,7 +125,6 @@ window.addEventListener("load", () => {
   }, 1500);
 });
 
-// BARRA FULLSCREEN — mostra per 10 secondi
 document.addEventListener("fullscreenchange", () => {
   if (document.fullscreenElement) showFsBar();
 });
@@ -258,33 +241,29 @@ function selectChannel(index) {
   document.getElementById("channel-overlay").textContent = "▶ " + ch.name;
   document.getElementById("np-name").textContent = ch.name;
   document.getElementById("np-cat").textContent = ch.category;
-
-  // Aggiorna barra fullscreen
   document.getElementById("fs-bar-name").textContent = ch.name;
   document.getElementById("fs-bar-cat").textContent = ch.category;
   const logo = document.getElementById("fs-bar-logo");
   if (ch.logo) { logo.src = ch.logo; logo.style.display = "block"; }
   else { logo.style.display = "none"; }
   if (document.fullscreenElement) showFsBar();
+  playHLS(ch.url, ch.name);
+}
 
- function playHLS(url, name) {
+function playHLS(url, name) {
   const video = document.getElementById("video");
   setStatus("loading", "Connessione a " + name + "...");
   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
   if (window.dashInstance) { window.dashInstance.reset(); window.dashInstance = null; }
   video.src = "";
-
   const isDASH = url.includes(".mpd");
   const isRelinker = url.includes("relinker") || url.includes("relinkerServlet");
-
   if (isRelinker) {
-    // Link relinker RAI — assegna direttamente al video
     video.src = url;
     video.load();
     video.play().catch(() => {});
     video.onplaying = () => setStatus("live", "▶ " + name);
     video.onerror = () => setStatus("error", "Errore stream RAI");
-
   } else if (isDASH) {
     try {
       window.dashInstance = dashjs.MediaPlayer().create();
@@ -292,19 +271,16 @@ function selectChannel(index) {
       window.dashInstance.on(dashjs.MediaPlayer.events.PLAYBACK_STARTED, () => setStatus("live", "▶ " + name));
       window.dashInstance.on(dashjs.MediaPlayer.events.ERROR, () => setStatus("error", "Errore stream DASH"));
     } catch(e) { setStatus("error", "Errore DASH: " + e.message); }
-
   } else if (Hls.isSupported()) {
     hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
     hlsInstance.loadSource(url);
     hlsInstance.attachMedia(video);
     hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); setStatus("live", "▶ " + name); });
     hlsInstance.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) setStatus("error", "Errore stream HLS"); });
-
   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
     video.src = url;
     video.play().catch(() => {});
     setStatus("live", "▶ " + name);
-
   } else {
     video.src = url;
     video.play().catch(() => { setStatus("error", "Formato non supportato"); });
@@ -345,7 +321,8 @@ function nextChannel() {
 
 document.addEventListener("keydown", function(e) {
   const cats = document.getElementById("cat-tabs");
-  const inCats = document.activeElement && document.activeElement.classList.contains("cat-btn");
+  const inCats = document.activeElement
+const inCats = document.activeElement && document.activeElement.classList.contains("cat-btn");
   const inCtrl = document.activeElement && document.activeElement.closest("#ctrl-buttons");
 
   switch(e.key) {
@@ -358,8 +335,7 @@ document.addEventListener("keydown", function(e) {
           focusableItems.forEach(el => el.classList.remove("focused"));
           focusableItems[0].classList.add("focused");
           focusableItems[0].focus();
-          focusableItems[0].scrollInto
-focusableItems[0].scrollIntoView({ block: "nearest" });
+          focusableItems[0].scrollIntoView({ block: "nearest" });
         }
       } else if (inCtrl) {
         // già in basso
@@ -371,9 +347,7 @@ focusableItems[0].scrollIntoView({ block: "nearest" });
           ctrlBtns[0].focus();
           ctrlBtns[0].classList.add("focused");
         }
-      } else {
-        moveFocus(1);
-      }
+      } else { moveFocus(1); }
       break;
 
     case "ArrowUp":
@@ -393,9 +367,7 @@ focusableItems[0].scrollIntoView({ block: "nearest" });
         if (activeCat) activeCat.focus();
         focusedIndex = -1;
         focusableItems.forEach(el => el.classList.remove("focused"));
-      } else {
-        moveFocus(-1);
-      }
+      } else { moveFocus(-1); }
       break;
 
     case "ArrowRight":
@@ -408,9 +380,7 @@ focusableItems[0].scrollIntoView({ block: "nearest" });
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci < ctrlBtns.length - 1) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci+1].focus(); ctrlBtns[ci+1].classList.add("focused"); }
-      } else {
-        nextChannel();
-      }
+      } else { nextChannel(); }
       break;
 
     case "ArrowLeft":
@@ -423,9 +393,7 @@ focusableItems[0].scrollIntoView({ block: "nearest" });
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci > 0) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci-1].focus(); ctrlBtns[ci-1].classList.add("focused"); }
-      } else {
-        prevChannel();
-      }
+      } else { prevChannel(); }
       break;
 
     case "Enter":
@@ -464,15 +432,8 @@ focusableItems[0].scrollIntoView({ block: "nearest" });
       document.getElementById("video").pause();
       break;
 
-    case "MediaTrackNext":
-      e.preventDefault();
-      nextChannel();
-      break;
-
-    case "MediaTrackPrevious":
-      e.preventDefault();
-      prevChannel();
-      break;
+    case "MediaTrackNext": e.preventDefault(); nextChannel(); break;
+    case "MediaTrackPrevious": e.preventDefault(); prevChannel(); break;
   }
 });
 
@@ -494,6 +455,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
