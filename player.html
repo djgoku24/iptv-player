@@ -325,7 +325,7 @@ document.addEventListener("keydown", function(e) {
   let inCtrl = document.activeElement && document.activeElement.closest("#ctrl-buttons");
 
   switch(e.key) {
-    case "ArrowDown":
+    ccase "ArrowDown":
       e.preventDefault();
       if (inCats) {
         updateFocusable();
@@ -337,6 +337,7 @@ document.addEventListener("keydown", function(e) {
           focusableItems[0].scrollIntoView({ block: "nearest" });
         }
       } else if (inCtrl) {
+        // già in basso, non fare nulla
       } else if (focusedIndex >= focusableItems.length - 1) {
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         if (ctrlBtns.length > 0) {
@@ -367,7 +368,6 @@ document.addEventListener("keydown", function(e) {
         focusableItems.forEach(el => el.classList.remove("focused"));
       } else { moveFocus(-1); }
       break;
-
     case "ArrowRight":
       e.preventDefault();
       if (inCats) {
@@ -378,7 +378,7 @@ document.addEventListener("keydown", function(e) {
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci < ctrlBtns.length - 1) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci+1].focus(); ctrlBtns[ci+1].classList.add("focused"); }
-      } else { nextChannel(); }
+      }
       break;
 
     case "ArrowLeft":
@@ -391,7 +391,7 @@ document.addEventListener("keydown", function(e) {
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci > 0) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci-1].focus(); ctrlBtns[ci-1].classList.add("focused"); }
-      } else { prevChannel(); }
+      }
       break;
 
     case "Enter":
@@ -454,6 +454,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
