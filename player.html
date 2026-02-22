@@ -48,15 +48,9 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 #ctrl-buttons{display:flex;gap:8px;flex-wrap:wrap}
 .ctrl-btn{background:#1a1a1a;border:1px solid #2a2a2a;color:#ccc;padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;white-space:nowrap}
 .ctrl-btn:hover{background:#e94560;border-color:#e94560;color:#fff}
+.focused{outline:2px solid #e94560 !important;background:#1e2a4a !important}
+.channel-item.active.focused{background:#c73652 !important}
 @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
-.focused {
-  outline: 2px solid #e94560 !important;
-  background: #1e2a4a !important;
-}
-.channel-item.active.focused {
-  background: #c73652 !important;
-}
-
 </style>
 </head>
 <body>
@@ -95,13 +89,13 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 </div>
 
 <script>
-
-
 let channels = [];
 let currentIndex = -1;
 let currentCategory = "Tutti";
 let hlsInstance = null;
 let searchMode = false;
+let focusedIndex = -1;
+let focusableItems = [];
 
 window.addEventListener("load", loadM3U);
 
@@ -118,17 +112,6 @@ function loadM3U() {
       setStatus("error", "Errore: " + err.message);
       document.getElementById("channel-list").innerHTML = '<p class="empty-msg">❌ ' + err.message + '</p>';
     });
-}
-    fetch(proxies[index++])
-      .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
-      .then(text => {
-        if (!text.includes("#EXTM3U")) throw new Error("Risposta non valida");
-        parseM3U(text);
-        setStatus("live", channels.length + " canali pronti");
-      })
-      .catch(() => tryNext());
-  }
-  tryNext();
 }
 
 function parseM3U(text) {
@@ -148,20 +131,7 @@ function parseM3U(text) {
       cur = null;
     }
   }
-
-  const ordineCategorie = [
-  "General",
-  "Entertainment",
-  "News",
-  "Sports",
-  "Movies",
-  "Kids",
-  "Music",
-  "Documentary",
-  "Religious",
-  "Undefined"
-];
-
+  const ordineCategorie = ["General","Entertainment","News","Sports","Movies","Kids","Music","Documentary","Religious","Undefined"];
   channels.sort((a, b) => {
     const iA = ordineCategorie.findIndex(c => a.category.toLowerCase().includes(c.toLowerCase()));
     const iB = ordineCategorie.findIndex(c => b.category.toLowerCase().includes(c.toLowerCase()));
@@ -171,7 +141,6 @@ function parseM3U(text) {
     if (a.category !== b.category) return a.category.localeCompare(b.category);
     return a.name.localeCompare(b.name);
   });
-
   currentIndex = -1;
   currentCategory = "Tutti";
   renderCategoryTabs();
@@ -264,9 +233,9 @@ function playHLS(url, name) {
     hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
     hlsInstance.loadSource(url);
     hlsInstance.attachMedia(video);
-    hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); setStatus("live", "▶ " + name); });
+     hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); setStatus("live", "▶ " + name); });
     hlsInstance.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) setStatus("error", "Errore stream HLS"); });
-} else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
     video.src = url;
     video.play().catch(() => {});
     setStatus("live", "▶ " + name);
@@ -307,80 +276,57 @@ function prevChannel() {
 function nextChannel() {
   if (currentIndex < channels.length - 1) selectChannel(currentIndex + 1);
 }
-   // ============================================================
-    // NAVIGAZIONE TELECOMANDO
-    // ============================================================
-    let focusedIndex = -1;
-    let focusableItems = [];
 
-    document.addEventListener("keydown", function(e) {
-      switch(e.key) {
-        case "ArrowDown":
-          e.preventDefault();
-          moveFocus(1);
-          break;
-        case "ArrowUp":
-          e.preventDefault();
-          moveFocus(-1);
-          break;
-        case "Enter":
-        case " ":
-          e.preventDefault();
-          if (focusedIndex >= 0 && focusableItems[focusedIndex]) {
-            focusableItems[focusedIndex].click();
-          }
-          break;
-        case "ArrowRight":
-          e.preventDefault();
-          nextChannel();
-          break;
-        case "ArrowLeft":
-          e.preventDefault();
-          prevChannel();
-          break;
-        case "Backspace":
-        case "XF86Back":
-          e.preventDefault();
-          document.getElementById("channel-list").focus();
-          break;
-        case "MediaPlayPause":
-        case "p":
-          e.preventDefault();
-          const v = document.getElementById("video");
-          v.paused ? v.play() : v.pause();
-          break;
-        case "MediaStop":
-          e.preventDefault();
-          document.getElementById("video").pause();
-          break;
-        case "MediaTrackNext":
-          e.preventDefault();
-          nextChannel();
-          break;
-        case "MediaTrackPrevious":
-          e.preventDefault();
-          prevChannel();
-          break;
-      }
-    });
+document.addEventListener("keydown", function(e) {
+  switch(e.key) {
+    case "ArrowDown": e.preventDefault(); moveFocus(1); break;
+    case "ArrowUp": e.preventDefault(); moveFocus(-1); break;
+    case "Enter":
+    case " ":
+      e.preventDefault();
+      if (focusedIndex >= 0 && focusableItems[focusedIndex]) focusableItems[focusedIndex].click();
+      break;
+    case "ArrowRight": e.preventDefault(); nextChannel(); break;
+    case "ArrowLeft": e.preventDefault(); prevChannel(); break;
+    case "Backspace":
+    case "XF86Back":
+      e.preventDefault();
+      document.getElementById("channel-list").focus();
+      break;
+    case "MediaPlayPause":
+    case "p":
+      e.preventDefault();
+      const v = document.getElementById("video");
+      v.paused ? v.play() : v.pause();
+      break;
+    case "MediaStop":
+      e.preventDefault();
+      document.getElementById("video").pause();
+      break;
+    case "MediaTrackNext": e.preventDefault(); nextChannel(); break;
+    case "MediaTrackPrevious": e.preventDefault(); prevChannel(); break;
+  }
+});
 
-    function updateFocusable() {
-      focusableItems = Array.from(document.querySelectorAll(".channel-item, .ctrl-btn, .cat-btn"));
-    }
+function updateFocusable() {
+  focusableItems = Array.from(document.querySelectorAll(".channel-item, .ctrl-btn, .cat-btn"));
+}
 
-    function moveFocus(direction) {
-      updateFocusable();
-      if (focusableItems.length === 0) return;
-      focusedIndex += direction;
-      if (focusedIndex < 0) focusedIndex = 0;
-      if (focusedIndex >= focusableItems.length) focusedIndex = focusableItems.length - 1;
-      focusableItems.forEach(el => el.classList.remove("focused"));
-      focusableItems[focusedIndex].classList.add("focused");
-      focusableItems[focusedIndex].scrollIntoView({ block: "nearest" });
-    }
+function moveFocus(direction) {
+  updateFocusable();
+  if (focusableItems.length === 0) return;
+  focusedIndex += direction;
+  if (focusedIndex < 0) focusedIndex = 0;
+  if (focusedIndex >= focusableItems.length) focusedIndex = focusableItems.length - 1;
+  focusableItems.forEach(el => el.classList.remove("focused"));
+  focusableItems[focusedIndex].classList.add("focused");
+  focusableItems[focusedIndex].scrollIntoView({ block: "nearest" });
+}
 </script>
 </body>
 </html>
+
+
 
 
 
