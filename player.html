@@ -325,7 +325,7 @@ document.addEventListener("keydown", function(e) {
   let inCtrl = document.activeElement && document.activeElement.closest("#ctrl-buttons");
 
   switch(e.key) {
-    ccase "ArrowDown":
+    case "ArrowDown":
       e.preventDefault();
       if (inCats) {
         updateFocusable();
@@ -454,6 +454,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
