@@ -133,12 +133,12 @@ let focusedIndex = -1;
 let focusableItems = [];
 let fsBarTimer = null;
 
-window.addEventListener("load", loadM3U);
-  window.addEventListener("load", () => {
+window.addEventListener("load", () => {
+  loadM3U();
   setTimeout(() => {
     const firstCat = document.querySelector(".cat-btn");
     if (firstCat) firstCat.focus();
-  }, 1000);
+  }, 1500);
 });
 
 // BARRA FULLSCREEN — mostra per 10 secondi
@@ -494,6 +494,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
