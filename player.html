@@ -36,35 +36,9 @@
         #right{flex:1;display:flex;flex-direction:column;overflow:hidden}
         #player-screen{position:relative;flex:1;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
         video{width:100%;height:100%;object-fit:contain;background:#000}
-        
-        #player-overlay-msg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-align: center;
-            z-index: 5;
-            background: rgba(0,0,0,0.6);
-            padding: 18px 30px;
-            border-radius: 15px;
-            pointer-events: none;
-            border: 1px solid #333;
-            line-height: 1.6;
-        }
-        #player-overlay-msg .sub {
-            display: block;
-            margin-top: 8px;
-            font-size: 0.82rem;
-            color: #ccc;
-            letter-spacing: 0.2px;
-        }
-        #player-overlay-msg strong {
-            color: #e94560;
-        }
-
+        #player-overlay-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 1.1rem; font-weight: 500; text-align: center; z-index: 5; background: rgba(0,0,0,0.6); padding: 18px 30px; border-radius: 15px; pointer-events: none; border: 1px solid #333; line-height: 1.6; }
+        #player-overlay-msg .sub { display: block; margin-top: 8px; font-size: 0.82rem; color: #ccc; letter-spacing: 0.2px; }
+        #player-overlay-msg strong { color: #e94560; }
         #channel-overlay{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.7);padding:5px 14px;border-radius:20px;font-size:.88rem;font-weight:600;pointer-events:none;z-index:10}
         #status-badge{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.7);padding:5px 12px;border-radius:20px;font-size:.75rem;pointer-events:none;z-index:10}
         .sdot{width:8px;height:8px;border-radius:50%;background:#555;flex-shrink:0}
@@ -80,7 +54,6 @@
         .ctrl-btn{background:#1a1a1a;border:1px solid #2a2a2a;color:#ccc;padding:8px 16px;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;white-space:nowrap}
         .ctrl-btn:hover{background:#e94560;border-color:#e94560;color:#fff}
         .ctrl-btn:focus{outline:2px solid #e94560;background:#e94560;color:#fff}
-        .focused{outline:2px solid #e94560 !important;background:#1e2a4a !important}
         #fs-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.95));padding:20px 30px 16px;display:flex;align-items:center;gap:14px;z-index:9999;opacity:0;transition:opacity .4s;pointer-events:none}
         #fs-bar.show{opacity:1}
         #fs-bar-logo{width:42px;height:42px;border-radius:8px;object-fit:contain;background:#111}
@@ -97,29 +70,25 @@
             <input type="text" id="search-input" placeholder="🔍 Cerca canale..." oninput="doSearch()">
         </div>
         <div id="cat-tabs"></div>
-        <div id="channel-list">
-            <p class="empty-msg">⏳ Caricamento lista...</p>
-        </div>
+        <div id="channel-list"></div>
     </div>
-
     <div id="right">
         <div id="player-screen">
+            <video id="video"></video>
             <div id="player-overlay-msg">
                 📺 Seleziona un canale dalla lista
                 <span class="sub">🎮 Usa le <strong>frecce</strong> per navigare &nbsp;|&nbsp; ⬆️⬇️ Scorri i canali &nbsp;|&nbsp; ✅ Premi <strong>OK × 2</strong> per lo schermo intero</span>
             </div>
             <div id="channel-overlay" style="display:none"></div>
             <div id="status-badge">
-                <div class="sdot" id="sdot"></div>
+                <div id="sdot" class="sdot"></div>
                 <span id="stext">In attesa...</span>
             </div>
-            <video id="video" autoplay playsinline></video>
         </div>
-
         <div id="controls">
             <div id="now-playing">
-                <div class="np-name" id="np-name">—</div>
-                <div class="np-cat" id="np-cat">—</div>
+                <div id="np-name" class="np-name">—</div>
+                <div id="np-cat" class="np-cat">—</div>
             </div>
             <div id="ctrl-buttons">
                 <button class="ctrl-btn" onclick="prevChannel()">⏮ Prec</button>
@@ -130,14 +99,12 @@
             </div>
         </div>
     </div>
-
     <div id="fs-bar">
         <img id="fs-bar-logo" src="" alt="">
         <div id="fs-bar-info">
             <div id="fs-bar-name"></div>
             <div id="fs-bar-cat"></div>
         </div>
-        <div id="fs-bar-dot"></div>
     </div>
 
     <script>
@@ -209,6 +176,10 @@
             const list = document.getElementById("channel-list");
             list.innerHTML = "";
             const filtered = channels.filter(c => currentCategory === "Tutti" || c.category === currentCategory);
+            if (filtered.length === 0) {
+                list.innerHTML = "<div class=\"empty-msg\">Nessun canale trovato</div>";
+                return;
+            }
             filtered.forEach(ch => {
                 const ri = channels.indexOf(ch);
                 const div = document.createElement("div");
@@ -230,16 +201,12 @@
             const ch = channels[index];
             if (!ch) return;
             currentIndex = index;
-            
-            // Nasconde l'overlay iniziale
             const overlay = document.getElementById("player-overlay-msg");
             if (overlay) overlay.style.display = "none";
-            
             document.getElementById("channel-overlay").style.display = "block";
             document.getElementById("channel-overlay").textContent = ch.name;
             document.getElementById("np-name").textContent = ch.name;
             document.getElementById("np-cat").textContent = ch.category;
-            
             renderChannels();
             playStream(ch.url, ch.name);
         }
@@ -248,7 +215,6 @@
             const video = document.getElementById("video");
             setStatus("loading", "Caricamento...");
             if (hlsInstance) hlsInstance.destroy();
-
             if (url.includes(".m3u8")) {
                 if (Hls.isSupported()) {
                     hlsInstance = new Hls();
@@ -286,9 +252,17 @@
             document.getElementById("mute-btn").textContent = v.muted ? "🔊 Audio" : "🔇 Muto";
         }
 
-        function reloadStream() { if (currentIndex >= 0) selectChannel(currentIndex); }
-        function prevChannel() { if (currentIndex > 0) selectChannel(currentIndex - 1); }
-        function nextChannel() { if (currentIndex < channels.length - 1) selectChannel(currentIndex + 1); }
+        function reloadStream() {
+            if (currentIndex >= 0) selectChannel(currentIndex);
+        }
+
+        function prevChannel() {
+            if (currentIndex > 0) selectChannel(currentIndex - 1);
+        }
+
+        function nextChannel() {
+            if (currentIndex < channels.length - 1) selectChannel(currentIndex + 1);
+        }
 
         function openFullscreen() {
             const el = document.getElementById("player-screen");
@@ -296,44 +270,67 @@
             else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         }
 
+        document.getElementById("search-input").addEventListener("keydown", (e) => {
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                const cats = document.querySelectorAll(".cat-btn");
+                const items = Array.from(document.querySelectorAll(".channel-item")).filter(i => i.style.display !== "none");
+                if (cats.length > 0) cats[0].focus();
+                else if (items.length > 0) items[0].focus();
+            }
+        });
+
         document.addEventListener("keydown", (e) => {
-            const cats = document.querySelectorAll(".cat-btn");
+            const cats = Array.from(document.querySelectorAll(".cat-btn"));
             const items = Array.from(document.querySelectorAll(".channel-item")).filter(i => i.style.display !== "none");
             const ctrls = Array.from(document.querySelectorAll(".ctrl-btn"));
             const active = document.activeElement;
 
             if (e.key === "ArrowDown") {
+                if (active === document.getElementById("search-input")) return;
                 e.preventDefault();
                 if (active.classList.contains("cat-btn")) {
                     if (items[0]) items[0].focus();
                 } else if (active.classList.contains("channel-item")) {
                     const idx = items.indexOf(active);
-                    if (items[idx + 1]) {
-                        items[idx + 1].focus();
-                    } else if (ctrls[0]) {
-                        ctrls[0].focus();
-                    }
+                    if (items[idx + 1]) items[idx + 1].focus();
+                    else if (ctrls[0]) ctrls[0].focus();
                 }
             } else if (e.key === "ArrowUp") {
+                if (active === document.getElementById("search-input")) return;
                 e.preventDefault();
                 if (active.classList.contains("ctrl-btn")) {
-                    if (items[items.length - 1]) items[items.length - 1].focus();
+                    if (items.length > 0) items[items.length - 1].focus();
+                    else if (cats.length > 0) cats[0].focus();
+                    else document.getElementById("search-input").focus();
+                } else if (active.classList.contains("cat-btn")) {
+                    document.getElementById("search-input").focus();
                 } else {
                     const idx = items.indexOf(active);
                     if (idx > 0) items[idx - 1].focus();
-                    else if (idx === 0) cats[0].focus();
+                    else if (idx === 0) {
+                        if (cats.length > 0) cats[0].focus();
+                        else document.getElementById("search-input").focus();
+                    }
                 }
             } else if (e.key === "ArrowRight") {
                 if (active.classList.contains("ctrl-btn")) {
                     const idx = ctrls.indexOf(active);
                     if (ctrls[idx + 1]) ctrls[idx + 1].focus();
+                } else if (active.classList.contains("cat-btn")) {
+                    const idx = cats.indexOf(active);
+                    if (cats[idx + 1]) cats[idx + 1].focus();
                 }
             } else if (e.key === "ArrowLeft") {
                 if (active.classList.contains("ctrl-btn")) {
                     const idx = ctrls.indexOf(active);
                     if (idx > 0) ctrls[idx - 1].focus();
+                } else if (active.classList.contains("cat-btn")) {
+                    const idx = cats.indexOf(active);
+                    if (idx > 0) cats[idx - 1].focus();
                 }
             } else if (e.key === "Enter") {
+                if (active === document.getElementById("search-input")) return;
                 e.preventDefault();
                 const now = Date.now();
                 if (now - lastEnterTime < 400) {
