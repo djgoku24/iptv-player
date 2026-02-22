@@ -434,72 +434,7 @@ document.addEventListener("keydown", function(e) {
     case "MediaTrackPrevious": e.preventDefault(); prevChannel(); break;
   }
 });
-    case "ArrowRight":
-      e.preventDefault();
-      if (inCats) {
-        const catBtns = Array.from(cats.querySelectorAll(".cat-btn"));
-        const ci = catBtns.indexOf(document.activeElement);
-        if (ci < catBtns.length - 1) catBtns[ci + 1].focus();
-      } else if (inCtrl) {
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
-        const ci = ctrlBtns.indexOf(document.activeElement);
-        if (ci < ctrlBtns.length - 1) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci+1].focus(); ctrlBtns[ci+1].classList.add("focused"); }
-      } else { nextChannel(); }
-      break;
-
-    case "ArrowLeft":
-      e.preventDefault();
-      if (inCats) {
-        const catBtns = Array.from(cats.querySelectorAll(".cat-btn"));
-        const ci = catBtns.indexOf(document.activeElement);
-        if (ci > 0) catBtns[ci - 1].focus();
-      } else if (inCtrl) {
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
-        const ci = ctrlBtns.indexOf(document.activeElement);
-        if (ci > 0) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci-1].focus(); ctrlBtns[ci-1].classList.add("focused"); }
-      } else { prevChannel(); }
-      break;
-
-    case "Enter":
-    case " ":
-      e.preventDefault();
-      if (document.activeElement && (
-        document.activeElement.classList.contains("cat-btn") ||
-        document.activeElement.classList.contains("ctrl-btn") ||
-        document.activeElement.classList.contains("channel-item")
-      )) {
-        document.activeElement.click();
-      } else if (focusedIndex >= 0 && focusableItems[focusedIndex]) {
-        focusableItems[focusedIndex].click();
-      }
-      break;
-
-    case "Backspace":
-    case "XF86Back":
-      e.preventDefault();
-      if (document.fullscreenElement) { document.exitFullscreen(); return; }
-      const firstCat = cats.querySelector(".cat-btn");
-      if (firstCat) firstCat.focus();
-      focusedIndex = -1;
-      focusableItems.forEach(el => el.classList.remove("focused"));
-      break;
-
-    case "MediaPlayPause":
-    case "p":
-      e.preventDefault();
-      const v = document.getElementById("video");
-      v.paused ? v.play() : v.pause();
-      break;
-
-    case "MediaStop":
-      e.preventDefault();
-      document.getElementById("video").pause();
-      break;
-
-    case "MediaTrackNext": e.preventDefault(); nextChannel(); break;
-    case "MediaTrackPrevious": e.preventDefault(); prevChannel(); break;
-  }
-});
+   
 
 function updateFocusable() {
   focusableItems = Array.from(document.querySelectorAll("#channel-list .channel-item"));
@@ -519,6 +454,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
