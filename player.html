@@ -131,16 +131,7 @@ function parseM3U(text) {
       cur = null;
     }
   }
-  const ordineCategorie = ["General","Entertainment","News","Sports","Movies","Kids","Music","Documentary","Religious","Undefined"];
-  channels.sort((a, b) => {
-    const iA = ordineCategorie.findIndex(c => a.category.toLowerCase().includes(c.toLowerCase()));
-    const iB = ordineCategorie.findIndex(c => b.category.toLowerCase().includes(c.toLowerCase()));
-    const orderA = iA === -1 ? 999 : iA;
-    const orderB = iB === -1 ? 999 : iB;
-    if (orderA !== orderB) return orderA - orderB;
-    if (a.category !== b.category) return a.category.localeCompare(b.category);
-    return a.name.localeCompare(b.name);
-  });
+  
   currentIndex = -1;
   currentCategory = "Tutti";
   renderCategoryTabs();
@@ -325,6 +316,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
