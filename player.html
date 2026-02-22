@@ -61,6 +61,21 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 #fs-bar-cat{font-size:.8rem;color:#aaa;margin-top:2px}
 #fs-bar-dot{width:10px;height:10px;border-radius:50%;background:#e94560;animation:pulse 1.2s infinite;flex-shrink:0}
 @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
+
+  #fs-hint{
+  position:absolute;
+  bottom:60px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.7);
+  color:#aaa;
+  font-size:.75rem;
+  padding:6px 14px;
+  border-radius:20px;
+  pointer-events:none;
+  z-index:10;
+  white-space:nowrap;
+}
 </style>
 </head>
 <body>
@@ -116,6 +131,7 @@ let searchMode = false;
 let focusedIndex = -1;
 let focusableItems = [];
 let fsBarTimer = null;
+let lastEnterTime = 0;   
 
 window.addEventListener("load", () => {
   loadM3U();
@@ -126,7 +142,12 @@ window.addEventListener("load", () => {
 });
 
 document.addEventListener("fullscreenchange", () => {
-  if (document.fullscreenElement) showFsBar();
+  if (document.fullscreenElement) {
+    showFsBar();
+    document.getElementById("fs-hint").style.display = "none";
+  } else {
+    document.getElementById("fs-hint").style.display = "block";
+  }
 });
 
 function showFsBar() {
@@ -416,17 +437,25 @@ document.addEventListener("keydown", function(e) {
       }
       break;
 
-    case "Enter":
+     case "Enter":
     case " ":
       e.preventDefault();
-      if (document.activeElement && (
-        document.activeElement.classList.contains("cat-btn") ||
-        document.activeElement.classList.contains("ctrl-btn") ||
-        document.activeElement.classList.contains("channel-item")
-      )) {
-        document.activeElement.click();
-      } else if (focusedIndex >= 0 && focusableItems[focusedIndex]) {
-        focusableItems[focusedIndex].click();
+      const now = Date.now();
+      if (now - lastEnterTime < 400) {
+        // Doppio tap OK → Fullscreen
+        openFullscreen();
+        lastEnterTime = 0;
+      } else {
+        lastEnterTime = now;
+        if (document.activeElement && (
+          document.activeElement.classList.contains("cat-btn") ||
+          document.activeElement.classList.contains("ctrl-btn") ||
+          document.activeElement.classList.contains("channel-item")
+        )) {
+          document.activeElement.click();
+        } else if (focusedIndex >= 0 && focusableItems[focusedIndex]) {
+          focusableItems[focusedIndex].click();
+        }
       }
       break;
 
@@ -476,6 +505,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
