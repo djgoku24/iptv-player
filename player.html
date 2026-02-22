@@ -134,6 +134,12 @@ let focusableItems = [];
 let fsBarTimer = null;
 
 window.addEventListener("load", loadM3U);
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    const firstCat = document.querySelector(".cat-btn");
+    if (firstCat) firstCat.focus();
+  }, 1000);
+});
 
 // BARRA FULLSCREEN — mostra per 10 secondi
 document.addEventListener("fullscreenchange", () => {
@@ -261,33 +267,44 @@ function selectChannel(index) {
   else { logo.style.display = "none"; }
   if (document.fullscreenElement) showFsBar();
 
-  playHLS(ch.url, ch.name);
-}
-
-function playHLS(url, name) {
+ function playHLS(url, name) {
   const video = document.getElementById("video");
   setStatus("loading", "Connessione a " + name + "...");
   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
   if (window.dashInstance) { window.dashInstance.reset(); window.dashInstance = null; }
   video.src = "";
+
   const isDASH = url.includes(".mpd");
-  if (isDASH) {
+  const isRelinker = url.includes("relinker") || url.includes("relinkerServlet");
+
+  if (isRelinker) {
+    // Link relinker RAI — assegna direttamente al video
+    video.src = url;
+    video.load();
+    video.play().catch(() => {});
+    video.onplaying = () => setStatus("live", "▶ " + name);
+    video.onerror = () => setStatus("error", "Errore stream RAI");
+
+  } else if (isDASH) {
     try {
       window.dashInstance = dashjs.MediaPlayer().create();
       window.dashInstance.initialize(video, url, true);
       window.dashInstance.on(dashjs.MediaPlayer.events.PLAYBACK_STARTED, () => setStatus("live", "▶ " + name));
       window.dashInstance.on(dashjs.MediaPlayer.events.ERROR, () => setStatus("error", "Errore stream DASH"));
     } catch(e) { setStatus("error", "Errore DASH: " + e.message); }
+
   } else if (Hls.isSupported()) {
     hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
     hlsInstance.loadSource(url);
     hlsInstance.attachMedia(video);
     hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); setStatus("live", "▶ " + name); });
     hlsInstance.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) setStatus("error", "Errore stream HLS"); });
+
   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
     video.src = url;
     video.play().catch(() => {});
     setStatus("live", "▶ " + name);
+
   } else {
     video.src = url;
     video.play().catch(() => { setStatus("error", "Formato non supportato"); });
@@ -477,6 +494,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
