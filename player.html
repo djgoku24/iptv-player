@@ -62,20 +62,26 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 #fs-bar-dot{width:10px;height:10px;border-radius:50%;background:#e94560;animation:pulse 1.2s infinite;flex-shrink:0}
 @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
 
-  #fs-hint{
+#fs-hint{
   position:absolute;
   bottom:60px;
   left:50%;
   transform:translateX(-50%);
-  background:rgba(0,0,0,.7);
-  color:#aaa;
-  font-size:.75rem;
-  padding:6px 14px;
-  border-radius:20px;
+  background:rgba(0,0,0,.75);
+  color:#ccc;
+  font-size:.78rem;
+  padding:8px 18px;
+  border-radius:30px;
   pointer-events:none;
   z-index:10;
   white-space:nowrap;
+  border:1px solid #333;
+  letter-spacing:.3px;
 }
+#fs-hint strong{
+  color:#e94560;
+}
+
 </style>
 </head>
 <body>
@@ -96,7 +102,9 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
     <div id="status-badge">
       <div class="sdot loading" id="sdot"></div>
       <span id="stext">Caricamento lista...</span>
-   <div id="fs-hint">Premi OK due volte per schermo intero</div>
+   <div id="fs-hint">
+  🎮 Usa le <strong>frecce</strong> per navigare &nbsp;|&nbsp; ⬆️⬇️ Scorri i canali &nbsp;|&nbsp; ✅ Premi <strong>OK × 2</strong> per lo schermo intero
+</div>
     </div>
   </div>
   <div id="controls">
@@ -506,6 +514,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
