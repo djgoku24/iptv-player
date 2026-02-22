@@ -37,7 +37,6 @@
         #player-screen{position:relative;flex:1;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
         video{width:100%;height:100%;object-fit:contain;background:#000}
         
-        /* Overlay per il messaggio centrale */
         #player-overlay-msg {
             position: absolute;
             top: 50%;
@@ -49,10 +48,21 @@
             text-align: center;
             z-index: 5;
             background: rgba(0,0,0,0.6);
-            padding: 15px 25px;
-            border-radius: 12px;
+            padding: 18px 30px;
+            border-radius: 15px;
             pointer-events: none;
             border: 1px solid #333;
+            line-height: 1.6;
+        }
+        #player-overlay-msg .sub {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.82rem;
+            color: #ccc;
+            letter-spacing: 0.2px;
+        }
+        #player-overlay-msg strong {
+            color: #e94560;
         }
 
         #channel-overlay{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.7);padding:5px 14px;border-radius:20px;font-size:.88rem;font-weight:600;pointer-events:none;z-index:10}
@@ -78,8 +88,6 @@
         #fs-bar-name{font-size:1.2rem;font-weight:700;color:#fff}
         #fs-bar-cat{font-size:.8rem;color:#aaa;margin-top:2px}
         @media(max-width:800px){body{flex-direction:column}#sidebar{width:100%;height:240px;border-right:none;border-bottom:1px solid #1a1a1a}#controls{justify-content:center}}
-        #fs-hint{ position:absolute; bottom:60px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,.75); color:#ccc; font-size:.78rem; padding:8px 18px; border-radius:30px; pointer-events:none; z-index:10; white-space:nowrap; border:1px solid #333; letter-spacing:.3px; }
-        #fs-hint strong{ color:#e94560; }
     </style>
 </head>
 <body>
@@ -96,14 +104,16 @@
 
     <div id="right">
         <div id="player-screen">
-            <div id="player-overlay-msg">📺 Seleziona un canale dalla lista</div>
+            <div id="player-overlay-msg">
+                📺 Seleziona un canale dalla lista
+                <span class="sub">🎮 Usa le <strong>frecce</strong> per navigare &nbsp;|&nbsp; ⬆️⬇️ Scorri i canali &nbsp;|&nbsp; ✅ Premi <strong>OK × 2</strong> per lo schermo intero</span>
+            </div>
             <div id="channel-overlay" style="display:none"></div>
             <div id="status-badge">
                 <div class="sdot" id="sdot"></div>
                 <span id="stext">In attesa...</span>
             </div>
             <video id="video" autoplay playsinline></video>
-            <div id="fs-hint">🎮 Usa le frecce per navigare | ✅ Premi <strong>Enter</strong></div>
         </div>
 
         <div id="controls">
@@ -135,9 +145,6 @@
         let currentIndex = -1;
         let currentCategory = "Tutti";
         let hlsInstance = null;
-        let focusedIndex = -1;
-        let focusableItems = [];
-        let fsBarTimer = null;
         let lastEnterTime = 0;
 
         window.addEventListener("load", () => {
@@ -224,11 +231,12 @@
             if (!ch) return;
             currentIndex = index;
             
-            // Nasconde il messaggio iniziale
-            document.getElementById("player-overlay-msg").style.display = "none";
+            // Nasconde l'overlay iniziale
+            const overlay = document.getElementById("player-overlay-msg");
+            if (overlay) overlay.style.display = "none";
+            
             document.getElementById("channel-overlay").style.display = "block";
             document.getElementById("channel-overlay").textContent = ch.name;
-            
             document.getElementById("np-name").textContent = ch.name;
             document.getElementById("np-cat").textContent = ch.category;
             
@@ -291,23 +299,49 @@
         document.addEventListener("keydown", (e) => {
             const cats = document.querySelectorAll(".cat-btn");
             const items = Array.from(document.querySelectorAll(".channel-item")).filter(i => i.style.display !== "none");
+            const ctrls = Array.from(document.querySelectorAll(".ctrl-btn"));
             const active = document.activeElement;
 
             if (e.key === "ArrowDown") {
                 e.preventDefault();
                 if (active.classList.contains("cat-btn")) {
                     if (items[0]) items[0].focus();
-                } else {
+                } else if (active.classList.contains("channel-item")) {
                     const idx = items.indexOf(active);
-                    if (items[idx + 1]) items[idx + 1].focus();
+                    if (items[idx + 1]) {
+                        items[idx + 1].focus();
+                    } else if (ctrls[0]) {
+                        ctrls[0].focus();
+                    }
                 }
             } else if (e.key === "ArrowUp") {
                 e.preventDefault();
-                const idx = items.indexOf(active);
-                if (idx > 0) items[idx - 1].focus();
-                else if (idx === 0) cats[0].focus();
+                if (active.classList.contains("ctrl-btn")) {
+                    if (items[items.length - 1]) items[items.length - 1].focus();
+                } else {
+                    const idx = items.indexOf(active);
+                    if (idx > 0) items[idx - 1].focus();
+                    else if (idx === 0) cats[0].focus();
+                }
+            } else if (e.key === "ArrowRight") {
+                if (active.classList.contains("ctrl-btn")) {
+                    const idx = ctrls.indexOf(active);
+                    if (ctrls[idx + 1]) ctrls[idx + 1].focus();
+                }
+            } else if (e.key === "ArrowLeft") {
+                if (active.classList.contains("ctrl-btn")) {
+                    const idx = ctrls.indexOf(active);
+                    if (idx > 0) ctrls[idx - 1].focus();
+                }
             } else if (e.key === "Enter") {
-                active.click();
+                e.preventDefault();
+                const now = Date.now();
+                if (now - lastEnterTime < 400) {
+                    openFullscreen();
+                } else {
+                    active.click();
+                }
+                lastEnterTime = now;
             }
         });
     </script>
