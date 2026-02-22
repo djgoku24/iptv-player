@@ -378,6 +378,15 @@ document.addEventListener("keydown", function(e) {
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci < ctrlBtns.length - 1) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci+1].focus(); ctrlBtns[ci+1].classList.add("focused"); }
+      } else {
+        // Dalla lista canali vai ai pulsanti in basso
+        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
+        if (ctrlBtns.length > 0) {
+          focusableItems.forEach(el => el.classList.remove("focused"));
+          focusedIndex = -1;
+          ctrlBtns[0].focus();
+          ctrlBtns[0].classList.add("focused");
+        }
       }
       break;
 
@@ -390,7 +399,20 @@ document.addEventListener("keydown", function(e) {
       } else if (inCtrl) {
         const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
         const ci = ctrlBtns.indexOf(document.activeElement);
-        if (ci > 0) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci-1].focus(); ctrlBtns[ci-1].classList.add("focused"); }
+        if (ci > 0) {
+          ctrlBtns[ci].classList.remove("focused");
+          ctrlBtns[ci-1].focus();
+          ctrlBtns[ci-1].classList.add("focused");
+        } else {
+          // Dal primo pulsante torna alla lista canali
+          ctrlBtns[ci].classList.remove("focused");
+          updateFocusable();
+          if (focusableItems.length > 0) {
+            focusedIndex = 0;
+            focusableItems[0].classList.add("focused");
+            focusableItems[0].focus();
+          }
+        }
       }
       break;
 
@@ -454,6 +476,7 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
 
 
 
