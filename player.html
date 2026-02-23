@@ -1,4 +1,7 @@
-</html><!DOCTYPE html>
+Ti mando il file mobile completo con la gestione dei canali “(pagina)” che aprono il link esternamente, tutto già integrato.
+
+xml
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8"/>
@@ -81,7 +84,6 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
 #fs-hint strong{
   color:#e94560;
 }
-
 </style>
 </head>
 <body>
@@ -102,11 +104,10 @@ video{width:100%;height:100%;object-fit:contain;background:#000}
     <div id="status-badge">
       <div class="sdot loading" id="sdot"></div>
       <span id="stext">Caricamento lista...</span>
-   <div id="fs-hint">
-  
-                📺 Seleziona un canale dalla lista
-                <span class="sub">🎮 Usa le <strong>frecce</strong> per navigare &nbsp;|&nbsp; ⬆️⬇️ Scorri i canali &nbsp;|&nbsp; ✅ Premi <strong>OK × 2</strong> per lo schermo intero</span>
-</div>
+      <div id="fs-hint">
+        📺 Seleziona un canale dalla lista
+        <span class="sub">🎮 Usa le <strong>frecce</strong> per navigare &nbsp;|&nbsp; ⬆️⬇️ Scorri i canali &nbsp;|&nbsp; ✅ Premi <strong>OK × 2</strong> per lo schermo intero</span>
+      </div>
     </div>
   </div>
   <div id="controls">
@@ -142,7 +143,7 @@ let searchMode = false;
 let focusedIndex = -1;
 let focusableItems = [];
 let fsBarTimer = null;
-let lastEnterTime = 0;   
+let lastEnterTime = 0;
 
 window.addEventListener("load", () => {
   loadM3U();
@@ -179,7 +180,8 @@ function loadM3U() {
     })
     .catch(err => {
       setStatus("error", "Errore: " + err.message);
-      document.getElementById("channel-list").innerHTML = '<p class="empty-msg">❌ ' + err.message + '</p>';
+      document.getElementById("channel-list").innerHTML =
+        '<p class="empty-msg">❌ ' + err.message + '</p>';
     });
 }
 
@@ -232,8 +234,13 @@ function renderCategoryTabs() {
 function renderChannels() {
   const list = document.getElementById("channel-list");
   list.innerHTML = "";
-  const filtered = channels.filter(c => currentCategory === "Tutti" || c.category === currentCategory);
-  if (filtered.length === 0) { list.innerHTML = '<p class="empty-msg">Nessun canale.</p>'; return; }
+  const filtered = channels.filter(
+    c => currentCategory === "Tutti" || c.category === currentCategory
+  );
+  if (filtered.length === 0) {
+    list.innerHTML = '<p class="empty-msg">Nessun canale.</p>';
+    return;
+  }
   filtered.forEach(ch => {
     const ri = channels.indexOf(ch);
     list.appendChild(makeItem(ch, ri));
@@ -246,7 +253,10 @@ function doSearch() {
   list.innerHTML = "";
   if (!q) { renderChannels(); return; }
   const filtered = channels.filter(c => c.name.toLowerCase().includes(q));
-  if (filtered.length === 0) { list.innerHTML = '<p class="empty-msg">Nessun risultato.</p>'; return; }
+  if (filtered.length === 0) {
+    list.innerHTML = '<p class="empty-msg">Nessun risultato.</p>';
+    return;
+  }
   filtered.forEach(ch => {
     const ri = channels.indexOf(ch);
     list.appendChild(makeItem(ch, ri));
@@ -270,52 +280,81 @@ function selectChannel(index) {
   if (!ch) return;
   currentIndex = index;
   renderChannels();
+
   document.getElementById("channel-overlay").textContent = "▶ " + ch.name;
   document.getElementById("np-name").textContent = ch.name;
   document.getElementById("np-cat").textContent = ch.category;
   document.getElementById("fs-bar-name").textContent = ch.name;
   document.getElementById("fs-bar-cat").textContent = ch.category;
+
   const logo = document.getElementById("fs-bar-logo");
   if (ch.logo) { logo.src = ch.logo; logo.style.display = "block"; }
   else { logo.style.display = "none"; }
   if (document.fullscreenElement) showFsBar();
+
   playHLS(ch.url, ch.name);
 }
 
 function playHLS(url, name) {
   const video = document.getElementById("video");
   setStatus("loading", "Connessione a " + name + "...");
+
+  // CANALI MARCATI COME PAGINA → APRI BROWSER / APP ESTERNA
+  if (name.toLowerCase().includes("(pagina)")) {
+    setStatus("live", "Apertura pagina: " + name);
+    video.pause();
+    window.open(url, "_blank");
+    return;
+  }
+
   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
   if (window.dashInstance) { window.dashInstance.reset(); window.dashInstance = null; }
   video.src = "";
-  const isDASH = url.includes(".mpd");
+
+  const isDASH    = url.includes(".mpd");
   const isRelinker = url.includes("relinker") || url.includes("relinkerServlet");
+
   if (isRelinker) {
     video.src = url;
     video.load();
     video.play().catch(() => {});
     video.onplaying = () => setStatus("live", "▶ " + name);
-    video.onerror = () => setStatus("error", "Errore stream RAI");
+    video.onerror   = () => setStatus("error", "Errore stream RAI");
   } else if (isDASH) {
     try {
       window.dashInstance = dashjs.MediaPlayer().create();
       window.dashInstance.initialize(video, url, true);
-      window.dashInstance.on(dashjs.MediaPlayer.events.PLAYBACK_STARTED, () => setStatus("live", "▶ " + name));
-      window.dashInstance.on(dashjs.MediaPlayer.events.ERROR, () => setStatus("error", "Errore stream DASH"));
-    } catch(e) { setStatus("error", "Errore DASH: " + e.message); }
+      window.dashInstance.on(
+        dashjs.MediaPlayer.events.PLAYBACK_STARTED,
+        () => setStatus("live", "▶ " + name)
+      );
+      window.dashInstance.on(
+        dashjs.MediaPlayer.events.ERROR,
+        () => setStatus("error", "Errore stream DASH")
+      );
+    } catch(e) {
+      setStatus("error", "Errore DASH: " + e.message);
+    }
   } else if (Hls.isSupported()) {
     hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
     hlsInstance.loadSource(url);
     hlsInstance.attachMedia(video);
-    hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => { video.play().catch(() => {}); setStatus("live", "▶ " + name); });
-    hlsInstance.on(Hls.Events.ERROR, (e, data) => { if (data.fatal) setStatus("error", "Errore stream HLS"); });
+    hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.play().catch(() => {});
+      setStatus("live", "▶ " + name);
+    });
+    hlsInstance.on(Hls.Events.ERROR, (e, data) => {
+      if (data.fatal) setStatus("error", "Errore stream HLS");
+    });
   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
     video.src = url;
     video.play().catch(() => {});
     setStatus("live", "▶ " + name);
   } else {
     video.src = url;
-    video.play().catch(() => { setStatus("error", "Formato non supportato"); });
+    video.play().catch(() => {
+      setStatus("error", "Formato non supportato");
+    });
     video.onplaying = () => setStatus("live", "▶ " + name);
   }
 }
@@ -340,7 +379,8 @@ function openFullscreen() {
 function muteToggle() {
   const video = document.getElementById("video");
   video.muted = !video.muted;
-  document.getElementById("mute-btn").textContent = video.muted ? "🔊 Audio" : "🔇 Muto";
+  document.getElementById("mute-btn").textContent =
+    video.muted ? "🔊 Audio" : "🔇 Muto";
 }
 
 function prevChannel() {
@@ -353,8 +393,10 @@ function nextChannel() {
 
 document.addEventListener("keydown", function(e) {
   const cats = document.getElementById("cat-tabs");
-  let inCats = document.activeElement && document.activeElement.classList.contains("cat-btn");
-  let inCtrl = document.activeElement && document.activeElement.closest("#ctrl-buttons");
+  let inCats = document.activeElement &&
+               document.activeElement.classList.contains("cat-btn");
+  let inCtrl = document.activeElement &&
+               document.activeElement.closest("#ctrl-buttons");
 
   switch(e.key) {
     case "ArrowDown":
@@ -369,9 +411,11 @@ document.addEventListener("keydown", function(e) {
           focusableItems[0].scrollIntoView({ block: "nearest" });
         }
       } else if (inCtrl) {
-        // già in basso, non fare nulla
+        // niente
       } else if (focusedIndex >= focusableItems.length - 1) {
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
+        const ctrlBtns = Array.from(
+          document.querySelectorAll("#ctrl-buttons .ctrl-btn")
+        );
         if (ctrlBtns.length > 0) {
           focusableItems.forEach(el => el.classList.remove("focused"));
           focusedIndex = -1;
@@ -394,12 +438,15 @@ document.addEventListener("keydown", function(e) {
           focusableItems[focusedIndex].scrollIntoView({ block: "nearest" });
         }
       } else if (focusedIndex <= 0) {
-        const activeCat = cats.querySelector(".cat-btn.active") || cats.querySelector(".cat-btn");
+        const activeCat =
+          cats.querySelector(".cat-btn.active") ||
+          cats.querySelector(".cat-btn");
         if (activeCat) activeCat.focus();
         focusedIndex = -1;
         focusableItems.forEach(el => el.classList.remove("focused"));
       } else { moveFocus(-1); }
       break;
+
     case "ArrowRight":
       e.preventDefault();
       if (inCats) {
@@ -407,12 +454,19 @@ document.addEventListener("keydown", function(e) {
         const ci = catBtns.indexOf(document.activeElement);
         if (ci < catBtns.length - 1) catBtns[ci + 1].focus();
       } else if (inCtrl) {
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
+        const ctrlBtns = Array.from(
+          document.querySelectorAll("#ctrl-buttons .ctrl-btn")
+        );
         const ci = ctrlBtns.indexOf(document.activeElement);
-        if (ci < ctrlBtns.length - 1) { ctrlBtns[ci].classList.remove("focused"); ctrlBtns[ci+1].focus(); ctrlBtns[ci+1].classList.add("focused"); }
+        if (ci < ctrlBtns.length - 1) {
+          ctrlBtns[ci].classList.remove("focused");
+          ctrlBtns[ci+1].focus();
+          ctrlBtns[ci+1].classList.add("focused");
+        }
       } else {
-        // Dalla lista canali vai ai pulsanti in basso
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
+        const ctrlBtns = Array.from(
+          document.querySelectorAll("#ctrl-buttons .ctrl-btn")
+        );
         if (ctrlBtns.length > 0) {
           focusableItems.forEach(el => el.classList.remove("focused"));
           focusedIndex = -1;
@@ -429,14 +483,15 @@ document.addEventListener("keydown", function(e) {
         const ci = catBtns.indexOf(document.activeElement);
         if (ci > 0) catBtns[ci - 1].focus();
       } else if (inCtrl) {
-        const ctrlBtns = Array.from(document.querySelectorAll("#ctrl-buttons .ctrl-btn"));
+        const ctrlBtns = Array.from(
+          document.querySelectorAll("#ctrl-buttons .ctrl-btn")
+        );
         const ci = ctrlBtns.indexOf(document.activeElement);
         if (ci > 0) {
           ctrlBtns[ci].classList.remove("focused");
           ctrlBtns[ci-1].focus();
           ctrlBtns[ci-1].classList.add("focused");
         } else {
-          // Dal primo pulsante torna alla lista canali
           ctrlBtns[ci].classList.remove("focused");
           updateFocusable();
           if (focusableItems.length > 0) {
@@ -448,12 +503,11 @@ document.addEventListener("keydown", function(e) {
       }
       break;
 
-     case "Enter":
+    case "Enter":
     case " ":
       e.preventDefault();
       const now = Date.now();
       if (now - lastEnterTime < 400) {
-        // Doppio tap OK → Fullscreen
         openFullscreen();
         lastEnterTime = 0;
       } else {
@@ -497,9 +551,10 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
-
 function updateFocusable() {
-  focusableItems = Array.from(document.querySelectorAll("#channel-list .channel-item"));
+  focusableItems = Array.from(
+    document.querySelectorAll("#channel-list .channel-item")
+  );
 }
 
 function moveFocus(direction) {
@@ -507,7 +562,8 @@ function moveFocus(direction) {
   if (focusableItems.length === 0) return;
   focusedIndex += direction;
   if (focusedIndex < 0) focusedIndex = 0;
-  if (focusedIndex >= focusableItems.length) focusedIndex = focusableItems.length - 1;
+  if (focusedIndex >= focusableItems.length)
+    focusedIndex = focusableItems.length - 1;
   focusableItems.forEach(el => el.classList.remove("focused"));
   focusableItems[focusedIndex].classList.add("focused");
   focusableItems[focusedIndex].focus();
@@ -516,3 +572,4 @@ function moveFocus(direction) {
 </script>
 </body>
 </html>
+
