@@ -1,7 +1,7 @@
 #EXTM3U refresh="301" x-tvg-url="https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/SamsungTVPlus/it.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/PlutoTV/it.xml,https://epgshare01.online/epgshare01/epg_ripper_PLEX1.xml.gz,,https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_DUMMY_CHANNELS.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/world/epg.xml,https://www.epgitalia.tv/guide2,https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz"
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rai1.png" group-title="Rai",Rai 1
-https://vdnwndmsb2-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiuno1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraiuno1%2Fhls%2F&tstart=0&tend=1771853221&tof=86400&tk2=877406f661dc35caa888eb28d3f4d923ba225723fc857f4424f56ee36d2ecdd2
+https://vdnwndmsa2-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiuno1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraiuno1%2Fhls%2F&tstart=0&tend=1771853539&tof=86400&tk2=9de403f8be9425acb15b87363bce879940cdc56e1c1300dc708a423daf5d941b
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rai2.png" group-title="Rai",Rai 2
 https://vdnwndmsb2-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raidue1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraidue1%2Fhls%2F&tstart=0&tend=1771853374&tof=86400&tk2=5c7b5da32e4b14f66cfe5cac0e5eb5d8cc0a11733deb76b41a8c543af1a236cb
@@ -1645,6 +1645,7 @@ https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay5/hls/raiplay5_2400/ch
 
 #EXTINF:-1 tvg-id="Sports.Dummy.us" tvg-name="RaiPlaySport 3" tvg-logo="https://www.raiplay.it/dl/img/2024/04/30/1714492239159_Canale3x.png" group-title="RaiSport Attivo Sabato-Domenica",RaiPlaySport 3
 https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay6/hls/raiplay6_2400/chunklist.m3u8
+
 
 
 
