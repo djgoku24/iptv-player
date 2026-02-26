@@ -1,13 +1,13 @@
 #EXTM3U refresh="301" x-tvg-url="https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/SamsungTVPlus/it.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/PlutoTV/it.xml,https://epgshare01.online/epgshare01/epg_ripper_PLEX1.xml.gz,,https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_DUMMY_CHANNELS.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/world/epg.xml,https://www.epgitalia.tv/guide2,https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz"
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
-https://ranapk.online/RANAPK33x/TVDx/play.php?id=177585
+https://ranapk.online/RANAPK33x/TVDx/play.php?id=1167215
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
-https://ranapk.online/RANAPK33x/TVDx/play.php?id=177588
+https://ranapk.online/RANAPK33x/TVDx/play.php?id=1167216
 
 #EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3 HD" tvg-logo="http://service.myvisio.life:80/images/faf33a5c87e8efff495d5a9e77f8cb46.png" group-title="Italia",Rai 3 HD
-https://ranapk.online/RANAPK33x/TVDx/play.php?id=177590
+https://ranapk.online/RANAPK33x/TVDx/play.php?id=1167217
 
 
 #EXTINF:-1 tvg-id="Rete.4.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rete4.png" group-title="Mediaset",Rete 4
@@ -1646,6 +1646,7 @@ https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay5/hls/raiplay5_2400/ch
 
 #EXTINF:-1 tvg-id="Sports.Dummy.us" tvg-name="RaiPlaySport 3" tvg-logo="https://www.raiplay.it/dl/img/2024/04/30/1714492239159_Canale3x.png" group-title="RaiSport Attivo Sabato-Domenica",RaiPlaySport 3
 https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay6/hls/raiplay6_2400/chunklist.m3u8
+
 
 
 
