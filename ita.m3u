@@ -87,6 +87,12 @@ https://d3562mgijzx0zq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68
 #EXTINF:-1 tvg-id="QVC.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/qvc.png" group-title="Altri canali",QVC
 https://qrg.akamaized.net/hls/live/2017383/lsqvc1it/master.m3u8
 
+#EXTINF:-1 tvg-id="Man-ga" tvg-name="Rai 1 HD" tvg-logo="https://upload.wikimedia.org/wikipedia/it/9/94/Man_ga_it-1-.png" group-title="Italia",Man-ga
+https://c65b9e710bde44819015af98e72cd7ab.msvdn.net/live/S93572876/aILSQPYFY3pF/playlist.m3u8
+
+#EXTINF:-1 tvg-id="Rai 4K" tvg-name="Rai 1 HD" tvg-logo="https://i.ibb.co/6Rx2FScP/pngkey-com-4k-logo-png-997735.png" group-title="Italia",Rai 4K
+https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8
+
 
 #EXTINF:-1 channel id="IT90001094" tvg-id="IT90001094" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/foodnetwork.png" group-title="Discovery",Food Network
 https://jmp2.uk/stvp-IT90001094
@@ -107,6 +113,9 @@ https://www.dailymotion.com/cdn/live/video/x9us6y4.m3u8?sec=znapDBnGZ4vUPyUrfKmX
 
 #EXTINF:-1 tvg-id="RTL.102.5.HD.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5
 https://dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S97044836/tbbP8T1ZRPBL/playlist_video.m3u8
+
+#EXTINF:-1 tvg-id="Radio Pooh" tvg-logo="https://radiopooh.it/wp-content/uploads/2025/02/cropped-favicon.jpg" group-title="Canali musicali e Web Radio",Radio Pooh
+https://pooh.fluid.stream/RadioPooh_hbb/livestream/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT31000026G" tvg-logo="https://tvpnlogopeu.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IT31000026G_20251013T054531SQUARE.png" group-title="Discovery",Discovery
@@ -1644,6 +1653,7 @@ https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay5/hls/raiplay5_2400/ch
 
 #EXTINF:-1 tvg-id="Sports.Dummy.us" tvg-name="RaiPlaySport 3" tvg-logo="https://www.raiplay.it/dl/img/2024/04/30/1714492239159_Canale3x.png" group-title="RaiSport Attivo Sabato-Domenica",RaiPlaySport 3
 https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay6/hls/raiplay6_2400/chunklist.m3u8
+
 
 
 
