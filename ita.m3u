@@ -88,7 +88,7 @@ https://d3562mgijzx0zq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68
 https://qrg.akamaized.net/hls/live/2017383/lsqvc1it/master.m3u8
 
 #EXTINF:-1 tvg-id="Man-ga" tvg-name="Man-ga" tvg-logo="https://upload.wikimedia.org/wikipedia/it/9/94/Man_ga_it-1-.png" group-title="Italia",Man-ga
-https://c65b9e710bde44819015af98e72cd7ab.msvdn.net/live/S93572876/aILSQPYFY3pF/playlist.m3u8
+https://c65b9e710bde44819015af98e72cd7ab.msvdn.net/live/S93572876/aILSQPYFY3pF/manifest.mpd
 
 #EXTINF:-1 tvg-id="Rai 4K" tvg-name="Rai 4K" tvg-logo="https://i.ibb.co/6Rx2FScP/pngkey-com-4k-logo-png-997735.png" group-title="Italia",Rai 4K
 https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8
@@ -1653,6 +1653,7 @@ https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay5/hls/raiplay5_2400/ch
 
 #EXTINF:-1 tvg-id="Sports.Dummy.us" tvg-name="RaiPlaySport 3" tvg-logo="https://www.raiplay.it/dl/img/2024/04/30/1714492239159_Canale3x.png" group-title="RaiSport Attivo Sabato-Domenica",RaiPlaySport 3
 https://8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiplay6/hls/raiplay6_2400/chunklist.m3u8
+
 
 
 
