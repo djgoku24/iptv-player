@@ -6,10 +6,10 @@ https://dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S97044836/tbbP8T1ZRPBL/p
 #EXTINF:-1 tvg-id="RTL.102.5.HD.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5 Social TV
 https://vdnwndmsa2-dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S82929343/cAcsSu4Wecc5/chunklist_b5256000.m3u8
 
-#EXTINF:-1 tvg-id="RTL.102.5.HD.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5 Disco
+#EXTINF:-1 tvg-id="RTL.102.5.Disco.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5 Disco
 https://streamcdng21-dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S51100361/0Fb4R3k82b5Z/chunklist_b3256000.m3u8
 
-#EXTINF:-1 tvg-id="RTL.102.5.HD.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5 Caliente
+#EXTINF:-1 tvg-id="RTL.102.5.Caliente.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5 Caliente
 https://vdnwndmsa1-dd782ed59e2a4e86aabf6fc508674b59.msvdn.net/live/S8448465/zTYa1Z5Op9ue/chunklist_b3256000.m3u8
 
 #EXTINF:-1 tvg-id="70-80.it" tvg-name="70-80.it" tvg-logo="http://tv.10dailythings.com/images/channels/IT/70-80-tv/normal.png" group-title="Canali musicali e Web Radio",70-80.it
