@@ -83,7 +83,7 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT900007I0" tvg-id="IT900007I0" tvg-name="Real time" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/realtime.png" group-title="Discovery",Real time
-https://d3562mgijzx0zq.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-kizqtzpvvl3i8/Realtime_IT.m3u8
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd2op4s24rubfe0.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-up3xdjecl66jn%2Fout%2Fv1%2F54acbe71ddae4c9986c03fad1352bc84%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%25229e148332ec644190976b3c12e59aa1d4%2522%3A%25222a1ba25dbd50db6bd3f5c78d22374a5e%2522%2C%25222f0e7f395ffe4ca3b13e278b7fd4fe49%2522%3A%25220bc5b16b42987699ab5ccc427d2d3a9b%2522%257D
 
 
 #EXTINF:-1 tvg-id="QVC.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/qvc.png" group-title="Altri canali",QVC
@@ -97,7 +97,7 @@ https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10
 
 
 #EXTINF:-1 channel id="IT90001094" tvg-id="IT90001094" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/foodnetwork.png" group-title="Discovery",Food Network
-https://jmp2.uk/stvp-IT90001094
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd9kc4bu8iry3b.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-x4si0bflc4gq7%2Fout%2Fv1%2Fdcecf7d9fd2b49c59e85a65016ddc255%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%2522c848095817e54150a5461fef10669889%2522%3A%2522675d439cb2aca682e94ea6a94863744b%2522%2C%2522fae1056764404b7eaa560c5ab04f025e%2522%3A%25224af8b96a08fca5c36df1714a8bcde042%2522%257D
 
 
 #EXTINF:-1 tvg-id="Cine34.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cine34.png" group-title="Mediaset",Cine34
@@ -121,10 +121,10 @@ https://pooh.fluid.stream/RadioPooh_hbb/livestream/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT31000026G" tvg-logo="https://tvpnlogopeu.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IT31000026G_20251013T054531SQUARE.png" group-title="Discovery",Discovery
-https://d1941a53blim0r.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-75c5ipmzpicfd/Discovery_IT.m3u8?ads.device_did=%7BPSID%7D&ads.device_dnt=%7BTARGETOPT%7D&ads.app_domain=%7BAPP_DOMAIN%7D&ads.app_name=%7BAPP_NAME%7D&ads.consent=%7BTC_STRING%7D&ads.ssai_vendor=SSSLIVE&ads.service_id=IT31000026G
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd3a5c87efixjp8.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-94vzyl58b7u8n%2Fout%2Fv1%2F12837340dbdf42f2b13481a5ca6f80b2%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%2522cd1223723a4f4e2e8b559bf496d4ce2d%2522%3A%2522336a493f6b609572202c27ec1ce3904c%2522%2C%2522d7e2ce610537490db0c0c6689daf7f4d%2522%3A%2522a3384da6beb1d44e6579d066f39bba2e%2522%257D
 
 #EXTINF:-1 channel id="IT9000081B" tvg-id="IT9000081B" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/giallo.png" group-title="Discovery",Giallo
-https://jmp2.uk/stvp-IT9000081B
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd2iz84wnbtnuey.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-32xgu2ku0wsk9%2Fout%2Fv1%2F8a939414e62c460a9ccab7b699ed1106%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%25225796b9936a264399a6e7a57a673111fd%2522%3A%25226f6e383553643d406edbcac55cf159c9%2522%2C%2522e400990becff4b918dc289a223e04081%2522%3A%2522c01ce45bfb45a39e9cd4e68f1f29cbb2%2522%257D
 
 
 #EXTINF:-1 channel id="Top.Crime.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/topcrime.png" group-title="Mediaset",Top Crime
@@ -138,7 +138,7 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-kb/kb-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 channel id="IT900009KL" tvg-id="IT900009KL" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/k2.png" group-title="Discovery",K2
-https://d1pmpe0hs35ka5.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-39hsskpppgf72/K2_IT.m3u8
+https://zappr.stream/clearkey/?url=https%3A%2F%2Falwaysdata-api.zappr.stream%2Fk2.mpd%3FclearkeyPlayer.maxQuality%3D720&keys=%257B%25220100f3b37d2a3ad2542d78d000ff91fa%2522%3A%2522507ead932fe25e6f1e3ba0fc39fc7040%2522%2C%25220101d89b4d19006867fa32807a520b3c%2522%3A%25226b7fad6b36b9db9f2e5a95f4b934a6fd%2522%2C%25220102744f58a20d0e5153c97be37abac5%2522%3A%2522cfdc30074c2b9c006b77d103b0566fa6%2522%2C%252201030e665ffe3238d7754ca862207c93%2522%3A%252200000000000000000000000000000000%2522%2C%252201049a11bd9b6749a499a06e442c76ff%2522%3A%252200000000000000000000000000000000%2522%2C%25220105d4ce94a8a81796bbbdc6ab4ad85e%2522%3A%252200000000000000000000000000000000%2522%257D
 
 
 #EXTINF:-1 tvg-id="RaiGulp.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raigulp.png" group-title="Rai",Rai Gulp
@@ -149,7 +149,7 @@ https://raigulp1-dash-live.akamaized.net/dash/live/663985/raigulp1/manifest.mpd
 https://vdnwndmsc1-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiyoyo1/hls/raiyoyo_2400/chunklist.m3u8?baseuri=%2Fraiyoyo1%2Fhls%2F&tstart=0&tend=1765831411&tk2=367176814dc7bcbca893ea4bbd7de79aa91640c836d41b8a46dfc5933090b2b3
 
 #EXTINF:-1 channel id="IT900005HF" tvg-id="IT900005HF" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/frisbee.png" group-title="Discovery",Frisbee
-https://d6m7lubks416z.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-zmbstsedxme9s/Frisbee_IT.m3u8
+https://zappr.stream/clearkey/?url=https%3A%2F%2Falwaysdata-api.zappr.stream%2Ffrisbee.mpd%3FclearkeyPlayer.maxQuality%3D720&keys=%257B%25220100c4e62e71f8234dd351c39719f289%2522%3A%252254e36b8081149f82fede8a073bb849ea%2522%2C%25220101df8e46342feb1c3af4deb9cae20e%2522%3A%2522591e3976252c67b3d3754e05bfb18cc6%2522%2C%252201020282919b84db71cbb1d4d9c5b8da%2522%3A%25226f5960345613d78c9142da316514c497%2522%2C%2522010359f5430752b1a62adb5c6582b6f2%2522%3A%252200000000000000000000000000000000%2522%2C%25220104cc42b23760320f22db99e1e6f7e9%2522%3A%252200000000000000000000000000000000%2522%2C%25220105b63eff2190f9c01c9b160cdd8f78%2522%3A%252200000000000000000000000000000000%2522%257D
 
 #EXTINF:-1 tvg-id="Cartoonito.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cartoonito.png" group-title="Mediaset",Cartoonito
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
@@ -182,8 +182,10 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-kf/kf-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT9000113W" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/dmax.png" group-title="Discovery",DMAX
-https://jmp2.uk/stvp-IT9000113W
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd24suwc4j2wvyy.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-09ap0j3u2xm1u%2Fout%2Fv1%2F1ef9705b7c534751889b6e01bb032f80%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%2522b50bfbff8fa14bda96d92025417d784f%2522%3A%25228f183160378160a4494c7d3c35db96ef%2522%2C%2522eeb9d5f050034218a56d94407ced2f2d%2522%3A%25223d32eda3dd788800a3e760b2e595110a%2522%257D
 
+#EXTINF:-1 tvg-id="IT9000113W" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Discovery_Turbo.svg/3840px-Discovery_Turbo.svg.png" group-title="Discovery", Discovery Turbo
+https://zappr.stream/clearkey/?url=https%3A%2F%2Fd1m086gym5403i.cloudfront.net%2Fv1%2Fmaster%2F3722c60a815c199d9c0ef36c5b73da68a62b09d1%2Fcc-9yn62b89f3m5l%2Fout%2Fv1%2Ffa965f3d7abe46108988aed4fb3d0ee5%2FHLS_CMAF_DRM%2Findex.m3u8&keys=%257B%2522f99c5016f4dc4cf1a420343c8512c91d%2522%3A%25229e59bc4b39fa6bb468bd11a5fe70e2cf%2522%2C%2522efee7e58cc634e24a7964ffa978c3f6e%2522%3A%252289fa2b9f0cb4e40f0542ba8a15f29328%2522%257D
 
 #EXTINF:-1 tvg-id="RaiStoria.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raistoria.png" group-title="Rai",Rai Storia
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
