@@ -1,13 +1,16 @@
 #EXTM3U refresh="301" x-tvg-url="https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/SamsungTVPlus/it.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/PlutoTV/it.xml,https://epgshare01.online/epgshare01/epg_ripper_PLEX1.xml.gz,,https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_DUMMY_CHANNELS.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/world/epg.xml,https://www.epgitalia.tv/guide2,https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz"
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
-https://rai.zappr.stream/rai1.m3u8
+#EXTVLCOPT:http-user-agent=HbbTV/1.6.1
+https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=raiplayappletv
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
-https://rai.zappr.stream/rai2.m3u8
-
+#EXTVLCOPT:http-user-agent=HbbTV/1.6.1
+https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv
 #EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3 HD" tvg-logo="http://service.myvisio.life:80/images/faf33a5c87e8efff495d5a9e77f8cb46.png" group-title="Italia",Rai 3 HD
-https://rai.zappr.stream/rai3.m3u8
+#EXTVLCOPT:http-user-agent=HbbTV/1.6.1
+https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=7&forceUserAgent=raiplayappletv
+
 
 #EXTINF:-1 tvg-id="Rete.4.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rete4.png" group-title="Mediaset",Rete 4
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
@@ -82,7 +85,8 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT900007I0" tvg-id="IT900007I0" tvg-name="Real time" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/realtime.png" group-title="Discovery",Real time
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(realtimehd)/manifest.mpd
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/REALTIME/CMAF/index.m3u8
+
 
 
 #EXTINF:-1 tvg-id="QVC.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/qvc.png" group-title="Altri canali",QVC
@@ -96,7 +100,7 @@ https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10
 
 
 #EXTINF:-1 channel id="IT90001094" tvg-id="IT90001094" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/foodnetwork.png" group-title="Discovery",Food Network
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(foodnetworkhd)/manifest.mpd
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/FOODNETWORK/CMAF/index.m3u8
 
 
 #EXTINF:-1 tvg-id="Cine34.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cine34.png" group-title="Mediaset",Cine34
@@ -120,10 +124,10 @@ https://pooh.fluid.stream/RadioPooh_hbb/livestream/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT31000026G" tvg-logo="https://tvpnlogopeu.samsungcloud.tv/platform/image/sourcelogo/vc/00/02/34/IT31000026G_20251013T054531SQUARE.png" group-title="Discovery",Discovery
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(warnertv)/manifest.mpd
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DISCOVERYCHANNEL/CMAF/index.m3u8
 
 #EXTINF:-1 channel id="IT9000081B" tvg-id="IT9000081B" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/giallo.png" group-title="Discovery",Giallo
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(giallo)/manifest.mpd
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/GIALLO/CMAF/index.m3u8
 
 
 #EXTINF:-1 channel id="Top.Crime.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/topcrime.png" group-title="Mediaset",Top Crime
@@ -137,7 +141,9 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-kb/kb-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 channel id="IT900009KL" tvg-id="IT900009KL" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/k2.png" group-title="Discovery",K2
-https://zappr.stream/clearkey/?url=https%3A%2F%2Falwaysdata-api.zappr.stream%2Fk2.mpd%3FclearkeyPlayer.maxQuality%3D720&keys=%257B%25220100f3b37d2a3ad2542d78d000ff91fa%2522%3A%2522507ead932fe25e6f1e3ba0fc39fc7040%2522%2C%25220101d89b4d19006867fa32807a520b3c%2522%3A%25226b7fad6b36b9db9f2e5a95f4b934a6fd%2522%2C%25220102744f58a20d0e5153c97be37abac5%2522%3A%2522cfdc30074c2b9c006b77d103b0566fa6%2522%2C%252201030e665ffe3238d7754ca862207c93%2522%3A%252200000000000000000000000000000000%2522%2C%252201049a11bd9b6749a499a06e442c76ff%2522%3A%252200000000000000000000000000000000%2522%2C%25220105d4ce94a8a81796bbbdc6ab4ad85e%2522%3A%252200000000000000000000000000000000%2522%257D
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https://d54or4x1qhv8g.cloudfront.net/drm/v2/license?drm-type=widevine
+https://alwaysdata-api.zappr.stream/k2.mpd
 
 
 #EXTINF:-1 tvg-id="RaiGulp.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raigulp.png" group-title="Rai",Rai Gulp
@@ -148,7 +154,9 @@ https://raigulp1-dash-live.akamaized.net/dash/live/663985/raigulp1/manifest.mpd
 https://vdnwndmsc1-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiyoyo1/hls/raiyoyo_2400/chunklist.m3u8?baseuri=%2Fraiyoyo1%2Fhls%2F&tstart=0&tend=1765831411&tk2=367176814dc7bcbca893ea4bbd7de79aa91640c836d41b8a46dfc5933090b2b3
 
 #EXTINF:-1 channel id="IT900005HF" tvg-id="IT900005HF" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/frisbee.png" group-title="Discovery",Frisbee
-https://zappr.stream/clearkey/?url=https%3A%2F%2Falwaysdata-api.zappr.stream%2Ffrisbee.mpd%3FclearkeyPlayer.maxQuality%3D720&keys=%257B%25220100c4e62e71f8234dd351c39719f289%2522%3A%252254e36b8081149f82fede8a073bb849ea%2522%2C%25220101df8e46342feb1c3af4deb9cae20e%2522%3A%2522591e3976252c67b3d3754e05bfb18cc6%2522%2C%252201020282919b84db71cbb1d4d9c5b8da%2522%3A%25226f5960345613d78c9142da316514c497%2522%2C%2522010359f5430752b1a62adb5c6582b6f2%2522%3A%252200000000000000000000000000000000%2522%2C%25220104cc42b23760320f22db99e1e6f7e9%2522%3A%252200000000000000000000000000000000%2522%2C%25220105b63eff2190f9c01c9b160cdd8f78%2522%3A%252200000000000000000000000000000000%2522%257D
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https://d54or4x1qhv8g.cloudfront.net/drm/v2/license?drm-type=widevine
+https://alwaysdata-api.zappr.stream/frisbee.mpd
 
 #EXTINF:-1 tvg-id="Cartoonito.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cartoonito.png" group-title="Mediaset",Cartoonito
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
@@ -181,10 +189,12 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-kf/kf-clr.isml/manifest.mpd
 
 
 #EXTINF:-1 tvg-id="IT9000113W" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/dmax.png" group-title="Discovery",DMAX
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(dmaxhd)/manifest.mpd
+https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DMAX/CMAF/index.m3u8
 
 #EXTINF:-1 tvg-id="IT9000113W" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Discovery_Turbo.svg/3840px-Discovery_Turbo.svg.png" group-title="Discovery", Discovery Turbo
-https://timlivetu0.cb.ticdn.it/Content/DASH/Live/channel(motortrendhd)/manifest.mpd
+#KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
+#KODIPROP:inputstream.adaptive.license_key=https://d54or4x1qhv8g.cloudfront.net/drm/v2/license?drm-type=widevine
+https://d1m086gym5403i.cloudfront.net/out/v1/fa965f3d7abe46108988aed4fb3d0ee5/HLS_CMAF_DRM/index.m3u8
 
 #EXTINF:-1 tvg-id="RaiStoria.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raistoria.png" group-title="Rai",Rai Storia
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
