@@ -2,15 +2,15 @@
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://chunk.tvnow247.today/api/proxy/playlist?token=eyJjaGFubmVsSWQiOiI4NTAiLCJ0cyI6MTc4NzUzNTcyNjk5NH0
+https://vdnwndmsa1-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiuno1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraiuno1%2Fhls%2F&tstart=0&tend=1787960096&tof=86400&tk2=235c6389e56f85e52638ac01b5e27fa9594e45fd7b8592018d556ea97f1ebac4
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://chunk.tvnow247.today/api/proxy/playlist?token=eyJjaGFubmVsSWQiOiI4NTEiLCJ0cyI6MTc4NzIxNzUwOTEzNX0
+https://vdnwndmsa1-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raidue1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraidue1%2Fhls%2F&tstart=0&tend=1787960143&tof=86400&tk2=c28dc05d868824e91ac3838c1acd98658e205943a19e46deddb946c532f37166
 
 #EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3 HD" tvg-logo="http://service.myvisio.life:80/images/faf33a5c87e8efff495d5a9e77f8cb46.png" group-title="Italia",Rai 3 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://chunk.tvnow247.today/api/proxy/playlist?token=eyJjaGFubmVsSWQiOiI4NTIiLCJ0cyI6MTc4NzIxNzU0NjY3NH0
+https://vdnwndmsa1-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raitre1/hls/playlist_ma_1800-5000.m3u8?baseuri=%2Fraitre1%2Fhls%2F&tstart=0&tend=1787960162&tof=86400&tk2=12beb8554a630f314bcfcb85cbb8903f1147535bc7cdde9c6ee1b6df540cbcd9
 
 #EXTINF:-1 tvg-id="Rete.4.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rete4.png" group-title="Mediaset",Rete 4
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
