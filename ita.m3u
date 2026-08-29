@@ -2,7 +2,8 @@
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://vdnwndmsa2-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiuno1/hls/playlist_ma.m3u8?baseuri=%2Fraiuno1%2Fhls%2F&tstart=0&tend=1787961218&tof=86400&tk2=c2f148a41a8b6d8bff29ee1cc79741abd4d2066ec0f90b6fba954dbbc3ce14a4
+
+https://chunk.tvnow247.today/api/proxy/playlist?token=eyJjaGFubmVsSWQiOiI4NTAiLCJ0cyI6MTc4Nzk2MTgzNzE2N30
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
