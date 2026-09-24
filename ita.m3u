@@ -2,7 +2,7 @@
 
 #EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://sky-vavoo-worker.goku2424.workers.dev/live/rai-1.m3u8
+http://117.55.202.236:8008/sunshine/oAUx1jSFccT6r1sBSHjcQ9_7XRDZNKGH-UnUcXCHSj_tE1fQ6KCljBKELynhH7cyfOcKb5vW-OPAEBTW_XR1qcJzhHyg2ZJS44qhBVphvUN1D_-XzbDXEdeFfPe-uSZb6PgR2gexyNsQknIvHIxwxZlO9hXD4Jgbt_sDGbbA0d008lQTdrhGY2jhbkxBl5aAv9IFr0KRO7gZzVKmQMiQRXoDrFdDRVIytuA-T698jsARAUIjlwUG4B4aziV7KABD/hls/index.m3u8
 
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
