@@ -150,7 +150,7 @@ https://alwaysdata-api.zappr.stream/k2.mpd
 https://raigulp1-dash-live.akamaized.net/dash/live/663985/raigulp1/manifest.mpd
 
 #EXTINF:-1 tvg-id="RaiYoyo.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raiyoyo.png" group-title="Rai",Rai Yoyo
-https://sky-vavoo-worker.goku2424.workers.dev/live/rai-yoyo.m3u8
+http://109.205.187.150:8008/sunshine/9TFWo3TzmOLuvV7m-QpIzZx3wx3zCmJ3egt7o9LGUMFxitj71Vg4YcynNyNw72EyG33ySpC08kMgTu9TFY5FfSmH9vQSgxSX3QsMk3-QfU91vYlnH2FYj51i2bjtbeOWP8L5Ub8Ux-BZKBgy7hQjvIsDiOYgHBcIsar3hKNrQYtQZYBvlZgEqlGABlvdZd0F7p36GH_0zwSMW_IEhJBtpAj5H_W2l2RgykzZwSXWVBbA7CyaeSgJsTvJtIi-1kZ3/hls/index.m3u8
 
 #EXTINF:-1 channel id="IT900005HF" tvg-id="IT900005HF" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/frisbee.png" group-title="Discovery":http-user-agent="",Frisbee
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
