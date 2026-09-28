@@ -60,7 +60,7 @@ https://raimovie3-live.akamaized.net/hls/live/2018010/raimovie3/raimovie3/raimov
 
 #EXTINF:-1 tvg-id="RaiPremium.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raipremium.png" group-title="Rai",Rai Premium
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://sky-vavoo-worker.goku2424.workers.dev/live/rai-premium.m3u8
+https://d3k8wzt41aflvx.cloudfront.net/RaiPremium/Live.m3u8
 
 #EXTINF:-1 tvg-id="cielo.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cielo.png" group-title="Sky",Cielo
 https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8?hdnts=st=1764666351~exp=1829466206~acl=/*~hmac=b0e9165b6c55027903ad103c8219f363d8765eb300c0d9a339e9767fc3509556
@@ -150,7 +150,7 @@ https://alwaysdata-api.zappr.stream/k2.mpd
 https://raigulp1-dash-live.akamaized.net/dash/live/663985/raigulp1/manifest.mpd
 
 #EXTINF:-1 tvg-id="RaiYoyo.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raiyoyo.png" group-title="Rai",Rai Yoyo
-http://109.205.187.150:8008/sunshine/9TFWo3TzmOLuvV7m-QpIzZx3wx3zCmJ3egt7o9LGUMFxitj71Vg4YcynNyNw72EyG33ySpC08kMgTu9TFY5FfSmH9vQSgxSX3QsMk3-QfU91vYlnH2FYj51i2bjtbeOWP8L5Ub8Ux-BZKBgy7hQjvIsDiOYgHBcIsar3hKNrQYtQZYBvlZgEqlGABlvdZd0F7p36GH_0zwSMW_IEhJBtpAj5H_W2l2RgykzZwSXWVBbA7CyaeSgJsTvJtIi-1kZ3/hls/index.m3u8
+https://vdnwndmsa2-8e7439fdb1694c8da3a0fd63e4dda518.msvdn.net/raiyoyo1/hls/playlist_mo.m3u8?baseuri=%2Fraiyoyo1%2Fhls%2F&tstart=0&tend=1790604406&tof=86400&tk2=20dbe445df9f188fa71b5a3631bab8afc77544c1578bd89b8a1042d3df9a93a7
 
 #EXTINF:-1 channel id="IT900005HF" tvg-id="IT900005HF" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/frisbee.png" group-title="Discovery":http-user-agent="",Frisbee
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
