@@ -150,7 +150,7 @@ https://alwaysdata-api.zappr.stream/k2.mpd
 https://raigulp1-dash-live.akamaized.net/dash/live/663985/raigulp1/manifest.mpd
 
 #EXTINF:-1 tvg-id="RaiYoyo.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/raiyoyo.png" group-title="Rai",Rai Yoyo
-https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=7&forceUserAgent=rainet/4.0.5
+https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=62
 
 #EXTINF:-1 channel id="IT900005HF" tvg-id="IT900005HF" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/frisbee.png" group-title="Discovery":http-user-agent="",Frisbee
 #KODIPROP:inputstream.adaptive.license_type=com.widevine.alpha
