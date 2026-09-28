@@ -1,28 +1,28 @@
 #EXTM3U refresh="301" x-tvg-url="https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/SamsungTVPlus/it.xml,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/PlutoTV/it.xml,https://epgshare01.online/epgshare01/epg_ripper_PLEX1.xml.gz,,https://epgshare01.online/epgshare01/epg_ripper_CH1.xml.gz,https://epgshare01.online/epgshare01/epg_ripper_DUMMY_CHANNELS.xml.gz,https://raw.githubusercontent.com/matthuisman/i.mjh.nz/refs/heads/master/world/epg.xml,https://www.epgitalia.tv/guide2,https://epgshare01.online/epgshare01/epg_ripper_RAKUTEN1.xml.gz"
 
-#EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="http://service.myvisio.life:80/images/b0879796d27e736de474a4bac4cd5cfe.png" group-title="Italia",Rai 1 HD
+#EXTINF:-1 tvg-id="Rai1.it" tvg-name="Rai 1 HD" tvg-logo="https://iptv-epg.org/images/d645920e395fedad7bbbed0eca3fe2e0/Gs37GhTMJpTSbC67BhHRddcB1gtmIOWv2SZ_5U_mujS-SWMrkfoGfaK3K5DPcpbu2oHQpAe2GmDIQyAtmWyy2wJ2vERj9NCtxFVCww" group-title="Italia",Rai 1 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://dash2.antik.sk/live/test_rai_uno_tizen/playlist.m3u8
 
-#EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="http://service.myvisio.life:80/images/598b08714e3b45b565496de9a5cfb1df.png" group-title="Italia",Rai 2 HD
+#EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2 HD" tvg-logo="https://iptv-epg.org/images/r9JypxrlYM42craPXAVOCtmBA0UGhidpW5arFwRQ_oD8W5U5FWfxsYbpGRfVt6nObdnUeWMKSwAU6BgXWVKOSWe2f6YJVCmuJHf1nw" group-title="Italia",Rai 2 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8
 
-#EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3 HD" tvg-logo="http://service.myvisio.life:80/images/faf33a5c87e8efff495d5a9e77f8cb46.png" group-title="Italia",Rai 3 HD
+#EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3 HD" tvg-logo="https://iptv-epg.org/images/0Fs3VC7FdajKPA1Wfjy2jhHcP5fR4rxdXDIDQR13Lzq0cvHxgp1M5G5hu_REBX-6iaMEIzy0JmOrX6EGAtWTbRXZcNeaAwq1v3puMQ" group-title="Italia",Rai 3 HD
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://d3k8wzt41aflvx.cloudfront.net/RAI3/Live.m3u8
 
-#EXTINF:-1 tvg-id="Rete.4.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rete4.png" group-title="Mediaset",Rete 4
+#EXTINF:-1 tvg-id="Rete.4.it" tvg-logo="https://iptv-epg.org/images/d645920e395fedad7bbbed0eca3fe2e0/uSN5KWwn-zSOsWAiXOuKNqHfiInUTyJGe6VR3T4Wf7ChPOgeMp_H4xepb1Q_-Zqk9xoRjut1uybkwyS7H5HLCjm4tfSIVyyFX9lOTaU" group-title="Mediaset",Rete 4
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://live03-col.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/manifest.mpd
 
 
-#EXTINF:-1 vg-id="Canale.5.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/canale5.png" group-title="Mediaset",Canale 5
+#EXTINF:-1 vg-id="Canale.5.it" tvg-logo="https://iptv-epg.org/images/C9_jU-XOZ8pmNZYMpCZwYsfHF7GigQkOEevSBJ6Ap0VnDpfzzSs_erggv075aZbTefHQmecyGns132LE6dE_c0gKLEvZkQJkeY0dMoZ1wA" group-title="Mediaset",Canale 5
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://live03-col.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/manifest.mpd
 
 
-#EXTINF:-1 tvg-id="Italia.1.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/italia1.png" group-title="Mediaset",Italia 1
+#EXTINF:-1 tvg-id="Italia.1.it" tvg-logo="https://iptv-epg.org/images/F6lZAY7BxOYRF1yvl0rA9QtUzfQlwE8FbGxwXhEPxzqig0SRqdRYXKGdbkB3yFG_Sj2VmUrl6PHJYbQyCjpibJoSxpOjcgWtHhgG1x5JaQ" group-title="Mediaset",Italia 1
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://live03-col.msf.cdn.mediaset.net/live/ch-i1/i1-clr.isml/manifest.mpd
 
@@ -102,7 +102,7 @@ https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10
 https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/FOODNETWORK/CMAF/index.m3u8
 
 
-#EXTINF:-1 tvg-id="Cine34.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/cine34.png" group-title="Mediaset",Cine34
+#EXTINF:-1 tvg-id="Cine34.it" tvg-logo="https://iptv-epg.org/images/d645920e395fedad7bbbed0eca3fe2e0/aOLxDPAGnKEi_bWk-0nUUFbdSuWNz7IyhWHw9qZQmd3SXx22v-GG0EVuyNr24sDPaXDwkzOKnYW0BSIjA3etPkvzcBYSJXYjB_XmDPMq" group-title="Mediaset",Cine34
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://live03-col.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/manifest.mpd
 
@@ -112,7 +112,7 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-b6/b6-clr.isml/manifest.mpd
 https://live03-col.msf.cdn.mediaset.net/live/ch-fu/fu-clr.isml/manifest.mpd
 
 
-#EXTINF:-1 tvg-id="Gambero.Rosso.HD.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/gambero-rosso.png" group-title="Cucina-Viaggi-Documentari",Gambero Rosso
+#EXTINF:-1 tvg-id="Gambero.Rosso.HD.it" tvg-logo="https://iptv-epg.org/images/gNXnz8QUKGvnQxz1LlJqi1uAte4HqgdxWxCiOE2jf7Ihz5jcoZbvsEzveXikM3ptmop0nqAKotMCdKSYWHoGU31LRmgfDSSqWBA9ucN9qe-ugN76" group-title="Cucina-Viaggi-Documentari",Gambero Rosso
 https://www.dailymotion.com/cdn/live/video/x9us6y4.m3u8?sec=znapDBnGZ4vUPyUrfKmXYA
 
 #EXTINF:-1 tvg-id="RTL.102.5.HD.it" tvg-logo="https://cdn.jsdelivr.net/gh/Tundrak/IPTV-Italia/logos/rtl1025tv.png" group-title="Canali musicali e Web Radio",RTL 102.5
@@ -212,7 +212,7 @@ https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
 https://raiscuola1-dash-live.akamaized.net/dash/live/663975/raiscuola1/manifest.mpd
 
-#EXTINF:-1 tvg-id="ACI.Sport.Tv.it" tvg-logo="http://odmsto.com/uploads/tv_image/sm/aci-sport-tv.JPG" group-title="Sport & Motori",ACI Sport Tv
+#EXTINF:-1 tvg-id="ACI.Sport.Tv.it" tvg-logo="https://iptv-epg.org/images/d645920e395fedad7bbbed0eca3fe2e0/mA5D8UuIRuFo_D5T7OXqvprRJYqQvf2XeXL6ZZ1MCcKM0r3ZWa9Prsiw_lLPxDpWswlSBnKKGzM7LA3aKDH4FFjv1gaQh22STbiRmVc0ZfX1aA" group-title="Sport & Motori",ACI Sport Tv
 https://webstream.multistream.it/memfs/e2cb3629-c1a2-495b-b43a-9eb386f04ed8.m3u8
 
 
@@ -220,11 +220,10 @@ https://webstream.multistream.it/memfs/e2cb3629-c1a2-495b-b43a-9eb386f04ed8.m3u8
 https://viamotionhsi.netplus.ch/live/eds/raisport1/browser-HLS8/raisport1.m3u8
 
 
-#EXTINF:-1 channel id="IT900004Y5" tvg-id="IT900004Y5" tvg-name="MotorTrendTV.it" tvg-logo="https://yt3.googleusercontent.com/A3IRtaRvhGAl44dtu9-Mp8T9oXiy68OGfkSCc9uf682m91SFePPH5JUzPZwhnkgFRX07ObAbgQ=s160-c-k-c0x00ffffff-no-rj" group-title="Discovery",Discovery
-https://wbd-reverseproxy.zappr.stream/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/DISCOVERYCHANNEL/CMAF/index.m3u8?
 
 
-#EXTINF:-1 channel-id="ITBA2200010O1" tvg-id="ITBA2200010O1" tvg-name="Sportitalia" tvg-logo="http://odmsto.com/uploads/tv_image/sm/sportitalia.png" group-title="Sport & Motori",Sportitalia
+
+#EXTINF:-1 channel-id="ITBA2200010O1" tvg-id="ITBA2200010O1" tvg-name="Sportitalia" tvg-logo="https://iptv-epg.org/images/d645920e395fedad7bbbed0eca3fe2e0/2q1R_KJxK9hMcXnZjnNy-W2bbpW0NhwmbaAtxlAJ7HRtLM0K7-Tzq4xkwcMvPPew_Mu-d3tcJn80N94MeCHnOm29yO__TFyC5baXA6NcAxKjqe8" group-title="Sport & Motori",Sportitalia
 https://origin-001.streamup.eu/sportitalia/sihd_abr2/playlist.m3u8
 
 #EXTINF:-1 tvg-id="Sports.Dummy.us" tvg-name="Primavera TV" tvg-logo="http://odmsto.com/uploads/tv_image/sm/primavera-tv.jpg" group-title="Sport & Motori",Primavera TV
