@@ -19,7 +19,7 @@ https://live03-col.msf.cdn.mediaset.net/live/ch-r4/r4-clr.isml/manifest.mpd
 
 #EXTINF:-1 vg-id="Canale.5.it" tvg-logo="https://iptv-epg.org/images/C9_jU-XOZ8pmNZYMpCZwYsfHF7GigQkOEevSBJ6Ap0VnDpfzzSs_erggv075aZbTefHQmecyGns132LE6dE_c0gKLEvZkQJkeY0dMoZ1wA" group-title="Mediaset",Canale 5
 #EXTVLCOPT:http-user-agent=HbbTV/1.6.1
-https://live03-col.msf.cdn.mediaset.net/live/ch-c5/c5-clr.isml/manifest.mpd
+https://canalitv.goku2424.workers.dev/hls?url=https%3A%2F%2Flive03-col.msf.cdn.mediaset.net%2Flive%2Fch-c5%2Fc5-clr.isml%2Fmanifest.mpd
 
 
 #EXTINF:-1 tvg-id="Italia.1.it" tvg-logo="https://iptv-epg.org/images/F6lZAY7BxOYRF1yvl0rA9QtUzfQlwE8FbGxwXhEPxzqig0SRqdRYXKGdbkB3yFG_Sj2VmUrl6PHJYbQyCjpibJoSxpOjcgWtHhgG1x5JaQ" group-title="Mediaset",Italia 1
